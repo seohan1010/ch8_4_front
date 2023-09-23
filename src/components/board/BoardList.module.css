@@ -1,0 +1,94 @@
+.menu_wrap{
+height:500px;
+width:150px;
+display:inline-block;
+border:1px solid black;
+float:left;
+position:relative;
+border-radius:3px;
+
+}
+
+.board_list_ul{
+border:1px solid black;
+border-radius:3px;
+
+}
+
+li{
+
+border:1px solid black;
+margin:3px 10px 5px 1px ;
+margin-left: -15px;
+border-radius:3px;
+}
+
+.test_wrap {
+  margin: auto;
+  background-color: grey;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 500px;
+  width: 900px;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  padding-bottom: 5px;
+  display: inline-block;
+  text-align: center;
+  position:relative;
+  transform:translateX(-50px);
+  max-width: 1000px;
+}
+
+
+.span {
+  border: 1px solid black;
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  height: 25px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  width: 900px;
+  transform:translateX(30px);
+}
+
+
+
+.list_wrap {
+  margin: auto;
+  margin: 10px 0px 10px;
+  border: 2px solid black;
+  width: 900px;
+  height: 25px;
+}
+
+.result {
+  border: 3px solid rgb(22, 18, 18);
+  border-radius: 5px;
+  width: 390px;
+  height: 360px;
+  margin: auto;
+  margin-top: 5px;
+}
+
+span {
+  display: inline-block;
+  margin: 0px 100px 100px 0px;
+  margin-top:15;
+  width: fit-content ;
+  transform:translateX(50px);
+  
+}
+
+.button {
+ 
+  position: absolute;
+  border-radius:5px;
+  background-color: rgb(146, 87, 146);
+  font-size: medium;
+  bottom:8px;
+  right:6px;
+  height:35px;
+  width:100px;
+}
