@@ -8,18 +8,21 @@ const BoardSearch = (props) => {
   const selectedRef = useRef();
 
   const onChangeHandler = (e) => {
-
+    console.log(selectedRef.current);
     console.log(selectedRef.current.value)
     console.log(e.target.value);
     setkeyword(e.target.value);
   };
 
+
+  
+const data ={
+  "option":selectedRef.current.value,
+  "keyword":keyword
+}
+
   const onClickHandler = async() => {
 
-const data ={
-    "option":selectedRef.current.value,
-    "keyword":keyword
-}
 
 //     try{
 //    const searchedBoard = await fetch().then(res => res.json())
@@ -31,6 +34,12 @@ const data ={
 props.searchedBoardHandler(data);
   }
 
+
+ const keyPressHandler = (e) => {
+    if(e.key === 'Enter'){
+      props.searchedBoardHandler(data);
+    }
+ }
 
   return (
     <div className={classes.board_search_form}>
@@ -49,6 +58,7 @@ props.searchedBoardHandler(data);
         type="text"
         value={keyword}
         onChange={(e) => onChangeHandler(e)}
+        onKeyPress={keyPressHandler}
       />
       <button className={classes.button} onClick={onClickHandler} >검색</button>
     </div>

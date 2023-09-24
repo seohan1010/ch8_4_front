@@ -46,6 +46,7 @@ const BoardList = () => {
       setBoard(boardList);
     } catch (err) {
       console.log('<<<<<<< err :'+err);
+      setBoard('');
     }
   }, []);
 
