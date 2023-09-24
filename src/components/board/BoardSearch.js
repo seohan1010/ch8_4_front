@@ -2,19 +2,24 @@ import classes from "./BoardSearch.module.css";
 import { useState, useEffect, useRef } from "react";
 
 const BoardSearch = (props) => {
-  const [selected, setSeleted] = useState("");
-  const [searchCondition, setSearchCondition] = useState("");
+
+  const [keyword, setkeyword] = useState("");
 
   const selectedRef = useRef();
 
-  const onChangeHandler = (e, identifier) => {
-    console.log(selectedRef.current.value);
+  const onChangeHandler = (e) => {
+
+    console.log(selectedRef.current.value)
     console.log(e.target.value);
-    setSeleted(e.target.value);
-    setSearchCondition(e.target.value);
+    setkeyword(e.target.value);
   };
 
   const onClickHandler = async() => {
+
+const data ={
+    "option":selectedRef.current.value,
+    "keyword":keyword
+}
 
 //     try{
 //    const searchedBoard = await fetch().then(res => res.json())
@@ -23,7 +28,7 @@ const BoardSearch = (props) => {
 //     }catch(err){
 //         console.log(err);
 //     }
-props.searchedBoardHandler('hello');
+props.searchedBoardHandler(data);
   }
 
 
@@ -42,8 +47,8 @@ props.searchedBoardHandler('hello');
       <input
         className={classes.input}
         type="text"
-        value={searchCondition}
-        onChange={(e) => onChangeHandler(e, "input")}
+        value={keyword}
+        onChange={(e) => onChangeHandler(e)}
       />
       <button className={classes.button} onClick={onClickHandler} >검색</button>
     </div>

@@ -60,3 +60,21 @@ object-position: center top; */
   color: black;
   text-align: center;
 }
+
+ .li_third:hover{
+
+  background-color: rgb(98, 149, 132);
+
+}
+
+.li_first:hover{
+
+  background-color: rgb(98, 149, 132);
+
+}
+
+.li_second:hover{
+
+  background-color: rgb(98, 149, 132);
+
+}

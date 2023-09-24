@@ -92,3 +92,11 @@ span {
   height:35px;
   width:100px;
 }
+
+
+/* 이게 되네..... */
+.board_list:hover{
+
+color:greenyellow;
+
+}
