@@ -23,7 +23,7 @@ const BoardDetailPage = () => {
       }
     };
     getBoardDetail();
-  }, []);
+  }, [url]);
 
   return (
     <>

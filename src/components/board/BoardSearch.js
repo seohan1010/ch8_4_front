@@ -5,10 +5,10 @@ const BoardSearch = (props) => {
 
   const [keyword, setkeyword] = useState("");
 
-  const selectedRef = useRef();
+  // ref도 초기값이 없으면은 undefined 오류를뿜는다. 
+  const selectedRef = useRef('A');
 
   const onChangeHandler = (e) => {
-    console.log(selectedRef.current);
     console.log(selectedRef.current.value)
     console.log(e.target.value);
     setkeyword(e.target.value);

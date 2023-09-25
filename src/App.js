@@ -5,6 +5,9 @@ import BoardPage from "./pages/BoardPage";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/Error";
 import BoardDetailPage from "./pages/BoardDetailPage";
+import BoardEditPage from "./pages/BoardEditPage";
+import NewBoardPage from './pages/NewBoardPage';
+
 
 import {
   createBrowserRouter,
@@ -28,12 +31,14 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index:true, path: "/", element: <HomePage /> },
+      { index: true, path: "/", element: <HomePage /> },
       {
         path: "/board",
         element: <BoardPage />,
       },
-      { path: "/board/:bno", element: <BoardDetailPage /> }
+      { path:'/board/new', element : <NewBoardPage />},
+      { path: "/board/:bno", element: <BoardDetailPage /> },
+      { path: "/board/:bno/edit", element: <BoardEditPage /> },
     ],
   },
 ]);

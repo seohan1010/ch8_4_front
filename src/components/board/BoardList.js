@@ -39,14 +39,14 @@ const BoardList = () => {
 
       console.log("fetch data has been transfered");
       console.log(response);
-      const data = await response.status;
+      const data = response.status;
       console.log(data);
       const boardList = await response.json();
       console.log(boardList);
       setBoard(boardList);
     } catch (err) {
-      console.log('<<<<<<< err :'+err);
-      setBoard('');
+      console.log("<<<<<<< err :" + err);
+      setBoard("");
     }
   }, []);
 
@@ -66,9 +66,9 @@ const BoardList = () => {
       <BoardSearch searchedBoardHandler={searchedBoardHandler} />
 
       <div className={classes.span}>
-        <span>title</span>
-        <span>writer</span>
-        <span>write date</span>
+        <span className={classes.span_writer}>writer</span>
+        <span className={classes.span_title}>title</span>
+        <span className={classes.span_write_date}>write date</span>
       </div>
       <div className={classes.menu_wrap}>
         <ul className={classes.board_list_ul}>
@@ -80,16 +80,21 @@ const BoardList = () => {
 
       <div className={classes.test_wrap}>
         <div> </div>
-        {board !== ""
-          ? board.map((board) => (
-              <div className={classes.list_wrap} key={board.bno}>
-                <Link
-                  className={classes.board_list}
-                  to={"/board/" + board.bno}
-                >{`${board.writer}  ${board.title}  `}</Link>
-              </div>
-            ))
-          : "no data found"}{" "}
+        <table className={classes.table_wrap}>
+          {board !== ""
+            ? board.map((board) => (
+                <tr className={classes.table_tr}>
+                  <td className={classes.table_td}>{board.writer}</td>
+                  <td className={classes.table_td}>{board.bno}</td>
+                  <Link to={"/board/" + board.bno}>
+                    {" "}
+                    <td className={classes.table_td_title}>{board.title}</td>
+                  </Link>{" "}
+                  <td className={classes.table_td}>{board.writeDate}</td>
+                </tr>
+              ))
+            : "no data found"}{" "}
+        </table>
         <button
           className={classes.button}
           onClick={(e) => {

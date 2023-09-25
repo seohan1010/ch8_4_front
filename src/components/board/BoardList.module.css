@@ -3,7 +3,8 @@ height:500px;
 width:150px;
 display:inline-block;
 border:1px solid black;
-float:left;
+top:-480px;
+left:-200px;
 position:relative;
 border-radius:3px;
 
@@ -25,10 +26,8 @@ border-radius:3px;
 
 .test_wrap {
   margin: auto;
-  background-color: grey;
-  border: 2px solid black;
   border-radius: 5px;
-  height: 500px;
+  height: 350px;
   width: 900px;
   margin-top: 25px;
   margin-bottom: 50px;
@@ -53,6 +52,24 @@ border-radius:3px;
   transform:translateX(30px);
 }
 
+
+/*  span 정렬  */
+
+.span_writer{
+
+    transform:translateX(-200px);
+
+}
+
+.span_write_date{
+  transform:translateX(300px);
+}
+
+.span_title{
+
+  transform:translateX(90px);
+
+}
 
 
 .list_wrap {
@@ -95,8 +112,43 @@ span {
 
 
 /* 이게 되네..... */
-.board_list:hover{
 
-color:greenyellow;
+.table_td_title:hover{
+  color:greenyellow;
+}
 
+
+/* table css */
+
+.table_wrap{
+
+  border-top:2px solid black;
+  border-bottom:1px solid black;
+   width:900px;
+   margin:auto;
+   
+}
+
+
+tr:nth-child(even) {
+  background-color: #f0f0f070;
+}
+
+.table_tr{
+border-top:2px solid black;
+border:10px solid black;
+
+
+}
+
+.table_td_title{
+
+  width:450px;
+
+}
+
+.table_td{
+  border-top:1px solid black  ;
+  margin:0%;
+  padding:0px 0px 0px 0px ;
 }
