@@ -6,7 +6,8 @@ const BoardSearch = (props) => {
   const [keyword, setkeyword] = useState("");
 
   // ref도 초기값이 없으면은 undefined 오류를뿜는다. 
-  const selectedRef = useRef('A');
+  const selectedRef = useRef('');
+  const [data, setData]  = useState('');
 
   const onChangeHandler = (e) => {
     console.log(selectedRef.current.value)
@@ -15,11 +16,19 @@ const BoardSearch = (props) => {
   };
 
 
-  
+  const selectChangeHandler=()=>{
+    
 const data ={
   "option":selectedRef.current.value,
   "keyword":keyword
 }
+console.log("<<<<< data from selectChangeHandler : "+data.option);
+console.log("<<<<< data from selectChangeHandler : "+selectedRef.current.value);
+setData(data);
+  }
+  
+
+
 
   const onClickHandler = async() => {
 
@@ -35,6 +44,8 @@ props.searchedBoardHandler(data);
   }
 
 
+
+
  const keyPressHandler = (e) => {
     if(e.key === 'Enter'){
       props.searchedBoardHandler(data);
@@ -48,6 +59,7 @@ props.searchedBoardHandler(data);
         ref={selectedRef}
         name="option"
         className={classes.select}
+        onChange={selectChangeHandler}
       >
         <option value="A">제목+내용 </option>
         <option value="T">제목만</option>

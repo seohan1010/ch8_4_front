@@ -1,30 +1,23 @@
 import classes from "./BoardList.module.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BoardSearch from "./BoardSearch";
-import axios from "axios";
+import { useLoaderData } from 'react-router-dom';
 
 const BoardList = () => {
   const [board, setBoard] = useState("");
 
-  useEffect(() => {
-    const getBoardList = async () => {
-      const url = "http://localhost/board/board";
-      const obj = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      };
-      const response = await fetch(url, obj)
-        .then((res) => res.json())
-        .catch((err) => err);
+const boardList  = useLoaderData();
+  
 
-      const boardList = response;
-      console.log(boardList ? boardList : "");
-      setBoard(boardList ? boardList : "");
-    };
+console.log(boardList);
 
-    getBoardList();
-  }, []);
+useEffect(()=>{
+
+  setBoard(boardList);
+},[boardList])
+
+
 
   const searchBoard = useCallback(async (board) => {
     const url = "http://localhost/board/search";
@@ -83,7 +76,7 @@ const BoardList = () => {
         <table className={classes.table_wrap}>
           {board !== ""
             ? board.map((board) => (
-                <tr className={classes.table_tr}>
+                <tr key={board.bno}  className={classes.table_tr}>
                   <td className={classes.table_td}>{board.writer}</td>
                   <td className={classes.table_td}>{board.bno}</td>
                   <Link to={"/board/" + board.bno}>
