@@ -16,23 +16,16 @@ const BoardSearch = (props) => {
   };
 
 
-  const selectChangeHandler=()=>{
-    
-const data ={
-  "option":selectedRef.current.value,
-  "keyword":keyword
-}
-console.log("<<<<< data from selectChangeHandler : "+data.option);
-console.log("<<<<< data from selectChangeHandler : "+selectedRef.current.value);
-setData(data);
-  }
-  
-
 
 
   const onClickHandler = async() => {
 
+    const data ={
+      "option":selectedRef.current.value,
+      "keyword":keyword
+    }
 
+    setData(data);
 //     try{
 //    const searchedBoard = await fetch().then(res => res.json())
 //    console.log(searchedBoard);
@@ -59,7 +52,7 @@ props.searchedBoardHandler(data);
         ref={selectedRef}
         name="option"
         className={classes.select}
-        onChange={selectChangeHandler}
+ 
       >
         <option value="A">제목+내용 </option>
         <option value="T">제목만</option>

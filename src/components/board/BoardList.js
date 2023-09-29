@@ -74,6 +74,9 @@ useEffect(()=>{
       <div className={classes.test_wrap}>
         <div> </div>
         <table className={classes.table_wrap}>
+          {/* map에 객체가 들어간 배열이 들어간 값의 변수가 앞에 오지 않으면은
+          에러가 발생한다. 
+          ---> map에서 사용하는 변수의 state를 잘 관리해주자. */}
           {board !== ""
             ? board.map((board) => (
                 <tr key={board.bno}  className={classes.table_tr}>
