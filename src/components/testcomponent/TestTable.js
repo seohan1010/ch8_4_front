@@ -3,9 +3,9 @@ import classes from "./TestTable.module.css";
 const TestTable = () => {
   return (
     <>
-      <table className={classes.table_wrap}>
         <div>here</div>
         <div>hi</div>
+      <table className={classes.table_wrap}>
        
           {" "}
           <tr className={classes.table_tr}>

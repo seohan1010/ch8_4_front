@@ -1,11 +1,14 @@
-
+import WriteBoard from '../components/board/WriteBoard';
 
 
 const NewBoardPage = () => {
     
 
 return (
-<>this is new board page</>
+
+<>
+<WriteBoard />
+</>
 );
 
 }

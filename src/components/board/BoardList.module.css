@@ -1,9 +1,9 @@
 .menu_wrap{
-height:500px;
+height:538px;
 width:150px;
 display:inline-block;
 border:1px solid black;
-top:-480px;
+top:-410px;
 left:-200px;
 position:relative;
 border-radius:3px;
@@ -26,8 +26,10 @@ border-radius:3px;
 
 .test_wrap {
   margin: auto;
+  border:3px solid black;
+  padding:20px;
   border-radius: 5px;
-  height: 350px;
+  height: 400px;
   width: 900px;
   margin-top: 25px;
   margin-bottom: 50px;
@@ -101,6 +103,7 @@ span {
 .button {
  
   position: absolute;
+  display:inline-block;
   border-radius:5px;
   background-color: rgb(146, 87, 146);
   font-size: medium;
@@ -149,6 +152,12 @@ border:10px solid black;
 
 .table_td{
   border-top:1px solid black  ;
+  height:30px;
   margin:0%;
   padding:0px 0px 0px 0px ;
+}
+
+.td_link:hover{
+  color:green;
+ font-size:17px;
 }

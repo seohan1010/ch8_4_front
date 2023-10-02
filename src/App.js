@@ -34,23 +34,11 @@ const router = createBrowserRouter([
       {
         path: "/board",
         element: <BoardPage />,
-        loader: async () => {  const url = "http://localhost/board/board";
-        const obj = {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        };
-        const response = await fetch(url, obj)
-          .then((res) => res.json())
-          .catch((err) => err);
-  
-        const boardList = response;
-        console.log(boardList ? boardList : "");
-        return boardList;
-        },
       },
       { path: "/board/new", element: <NewBoardPage /> },
       { path: "/board/:bno", element: <BoardDetailPage /> },
       { path: "/board/:bno/edit", element: <BoardEditPage /> },
+      
     ],
   },
 ]);

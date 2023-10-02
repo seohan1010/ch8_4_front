@@ -8,7 +8,7 @@ const List = (props) => {
 
 return(
 <>
-<li className={props.className}><NavLink  to={props.href} className={({isActive})=>isActive? classes.active : undefined }  >{props.content}</NavLink></li>
+<li className={props.className}><NavLink end  to={props.href} className={({isActive})=>isActive? classes.active : undefined }  >{props.content}</NavLink></li>
 </>
 );
 

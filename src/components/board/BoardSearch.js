@@ -25,7 +25,7 @@ const BoardSearch = (props) => {
       "keyword":keyword
     }
 
-    setData(data);
+    // setData(data);
 //     try{
 //    const searchedBoard = await fetch().then(res => res.json())
 //    console.log(searchedBoard);
@@ -40,6 +40,13 @@ props.searchedBoardHandler(data);
 
 
  const keyPressHandler = (e) => {
+
+  const data ={
+    "option":selectedRef.current.value,
+    "keyword":keyword
+  }
+
+
     if(e.key === 'Enter'){
       props.searchedBoardHandler(data);
     }

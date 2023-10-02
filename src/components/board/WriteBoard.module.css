@@ -1,0 +1,44 @@
+.write_board_wrap {
+  border: 3px solid orange;
+  width: 700px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.write_board_title {
+  margin:auto;
+  transform: translateX(10px);
+  margin-top: 20px;
+  width: 300px;
+}
+
+.write_board_writer {
+  margin:auto;
+  transform: translateX(3px);
+
+  margin-top: 20px;
+  width: 300px;
+}
+
+.write_board_content {
+
+  border-radius: 5px;
+  border: 3px solid green;
+  margin:auto;
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 500px;
+  max-height: 500px;
+}
+
+.button {
+  transform: translate(20px);
+  width:100px;
+  height:35px;
+  background-color: darkcyan;
+  border-radius: 3px;
+  box-shadow: none;
+    border:none; 
+  margin-top: 15px;
+  margin-bottom:15px;
+}

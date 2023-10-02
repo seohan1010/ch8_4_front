@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 const BoardDetailPage = () => {
   const [boardDetail, setBoardDetail] = useState("");
+  const [ isValid, setIsValid ] = useState(false);
 
   const params = useParams();
         
@@ -14,10 +15,12 @@ const BoardDetailPage = () => {
     console.log('this is board detail');
     const getBoardDetail = async () => {
       try {
-        const res = await fetch(url).then((res) => res.json());
+        setIsValid(false);
+        const res = await fetch(url).then((res) => res);
 
-        const board = res;
+        const board = await res.json();
         setBoardDetail(board);
+        setIsValid(true);
       } catch (err) {
         console.log("<<<<<<< fetch err :" + err);
       }
@@ -34,7 +37,9 @@ const BoardDetailPage = () => {
       ) : (
         <div>{`${boardDetail.bno} || ${boardDetail.writer} || ${boardDetail.title} || ${boardDetail.content}`}</div>
       )}
+        <BoardDetail bno={bno} />
       <p><Link to='..' relative='path' >Back</Link></p>
+
     </>
   );
 };

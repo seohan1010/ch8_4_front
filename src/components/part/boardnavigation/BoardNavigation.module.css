@@ -1,0 +1,49 @@
+.nav_wrap {
+    
+    border:1px solid orange;
+    height:50px;
+    width:680px;
+    margin:auto;
+    margin-top:8px;
+    border-radius:3px;
+
+
+}
+
+.nav_li {
+  display: inline-block;
+  border: 1px solid black;
+  margin:auto;
+  margin-left:3px;
+  margin-right:3px;
+  margin-top:13px;
+  width:30px;
+}
+
+.showPrev {
+border:1px solid black;
+display:inline-block;
+width:30px;
+height:30px;
+background-color: white;
+}
+
+
+.button{
+  display:inline-block;
+  border:2px solid black;
+  padding:2px 5px 2px;
+  margin:auto;
+  margin-top:2px;
+  margin-bottom:2px;
+  background-color: white;
+
+}
+
+.showNext {
+border:1px solid black;
+display:inline-block;
+width:30px;
+height:30px;
+background-color: white;
+}
