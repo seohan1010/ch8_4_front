@@ -5,39 +5,19 @@ import BoardSearch from "./BoardSearch";
 import BoardNavigation from "../part/boardnavigation/BoardNavigation";
 // import { useLoaderData } from 'react-router-dom';
 
-const BoardList = () => {
-
+const BoardList = (props) => {
   const navigate = useNavigate();
 
   const [board, setBoard] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [navigationData, setNavigationData] = useState("");
+  const [page, setPage] = useState("");
+
+     const {list, ph} = props.board;
+
   useEffect(() => {
-    const url = "http://localhost/board/board";
-    const obj = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-
-    async function getBoard() {
-      setIsValid(false);
-      const response = await fetch(url, obj).then((res) => res);
-
-      try {
-        // await로 데이터를 받고난 다음에 해당 받은 데이터를 사용하게 로직을 작성하여야 한다.
-        const { list, ph } = await response.json();
-        console.log("<<<<<<  list : ", list);
-        console.log("<<<<<<<< ph.totalCnt : " + ph.totalCnt);
-        setBoard(list);
-        setNavigationData(ph);
-        setIsValid(true);
-      } catch (err) {
-        setIsValid(false);
-        console.log("<<<<<<<<<<<<<<< err is : " + err);
-      }
-    }
-    getBoard();
-  }, []);
+    setBoard(list);
+  }, [props]);
 
   const searchBoard = useCallback(async (board) => {
     const url = "http://localhost/board/search";
@@ -78,7 +58,7 @@ const BoardList = () => {
   }, []);
 
   const onClickHandler = () => {
-      navigate('/board/new');
+    navigate("/board/new");
   };
 
   const searchedBoardHandler = (board) => {
@@ -112,21 +92,28 @@ const BoardList = () => {
             {/* map에 객체가 들어간 배열이 들어간 값의 변수가 앞에 오지 않으면은
           에러가 발생한다. 
           ---> map에서 사용하는 변수의 state를 잘 관리해주자. */}
-            {isValid || board.length !== 0
-              ? board.map((board) => (
-                  <tr key={board.bno} className={classes.table_tr}>
-                    <td className={classes.table_td}>{board.writer}</td>
-                    <td className={classes.table_td}>{board.bno}</td>
-                    <td className={classes.table_td_title}>
-                      <Link className={classes.td_link} to={"/board/" + board.bno}>{board.title}</Link>
-                    </td>
-                    <td className={classes.table_td}>{board.writeDate}</td>
-                  </tr>
-                ))
-              : "no data found"}
+            {board.length !== 0 ? (
+              board.map((board) => (
+                <tr key={board.bno} className={classes.table_tr}>
+                  <td className={classes.table_td}>{board.writer}</td>
+                  <td className={classes.table_td}>{board.bno}</td>
+                  <td className={classes.table_td_title}>
+                    <Link
+                      className={classes.td_link}
+                      to={"/board/" + board.bno}
+                    >
+                      {board.title}
+                    </Link>
+                  </td>
+                  <td className={classes.table_td}>{board.writeDate}</td>
+                </tr>
+              ))
+            ) : (
+              <> "no data found"</>
+            )}
           </tbody>
         </table>
-        {isValid && <BoardNavigation ph={navigationData} />}
+        { <BoardNavigation pageData={page} ph={ph} />}
         <button
           className={classes.button}
           onClick={() => {

@@ -1,47 +1,47 @@
 import BoardDetail from "../components/board/BoardDetail";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link, json,useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const BoardDetailPage = () => {
   const [boardDetail, setBoardDetail] = useState("");
-  const [ isValid, setIsValid ] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
+const data = useLoaderData();
   const params = useParams();
-        
-  const bno = params.bno;
-  const url = "http://localhost/board/detail/" + bno;
-  
-  useEffect(() => {
-    console.log('this is board detail');
-    const getBoardDetail = async () => {
-      try {
-        setIsValid(false);
-        const res = await fetch(url).then((res) => res);
 
-        const board = await res.json();
-        setBoardDetail(board);
-        setIsValid(true);
-      } catch (err) {
-        console.log("<<<<<<< fetch err :" + err);
-      }
-    };
-    getBoardDetail();
-  }, [url]);
 
   return (
     <>
-      <div>this is BoardDetail.</div>
-      <div>{`bno is :` + bno}</div>
-      {boardDetail === "" || boardDetail === undefined ? (
-        "no data found"
-      ) : (
-        <div>{`${boardDetail.bno} || ${boardDetail.writer} || ${boardDetail.title} || ${boardDetail.content}`}</div>
-      )}
-        <BoardDetail bno={bno} />
-      <p><Link to='..' relative='path' >Back</Link></p>
-
+     
+    
+      <BoardDetail detail={data} />
+      <p>
+        <Link to=".." relative="path">
+          Back
+        </Link>
+      </p>
     </>
   );
 };
 
 export default BoardDetailPage;
+
+export async function loader({ request, params }) {
+  const bno = params.bno;
+
+  const url = "http://localhost/board/detail/" + bno;
+  const data = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(url, data);
+
+  if (!response.ok) {
+    return json(
+      { message: "Could not fetch details for selected event." },
+      { status: 500 }
+    );
+  } else {
+    return await response.json();
+  }
+}

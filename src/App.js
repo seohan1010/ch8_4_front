@@ -7,6 +7,8 @@ import ErrorPage from "./pages/Error";
 import BoardDetailPage from "./pages/BoardDetailPage";
 import BoardEditPage from "./pages/BoardEditPage";
 import NewBoardPage from "./pages/NewBoardPage";
+import {loader as boardLoader } from "./pages/BoardPage";
+import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
 
 import {
   createBrowserRouter,
@@ -34,11 +36,15 @@ const router = createBrowserRouter([
       {
         path: "/board",
         element: <BoardPage />,
+        loader: boardLoader,
       },
       { path: "/board/new", element: <NewBoardPage /> },
-      { path: "/board/:bno", element: <BoardDetailPage /> },
+      {
+        path: "/board/:bno",
+        element: <BoardDetailPage />,
+        loader: boardDetailLoader,
+      },
       { path: "/board/:bno/edit", element: <BoardEditPage /> },
-      
     ],
   },
 ]);

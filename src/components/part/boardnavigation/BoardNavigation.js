@@ -13,8 +13,9 @@ const BoardNavigation = ({ ph }) => {
     showNext,
   } = ph;
 
-  const [startPage, setBeginPage] = useState(1);
-  const [lastPage, setEndPage] = useState(10);
+  console.log('------------------ ph : '+totalCnt+'------------------');
+
+  const [pagingData, setPagingData] = useState({ startPage: 1, lastPage: 10 });
   const [nav, setNav] = useState([
     { value: 1 },
     { value: 2 },
@@ -30,25 +31,19 @@ const BoardNavigation = ({ ph }) => {
   const [showBefore, setShowBefore] = useState(true);
   const [showAfter, setShowAfter] = useState(true);
 
-  // useEffect(() => {
-  //   let navigation = [];
-  //   setShowBefore(showPrev);
-  //   setShowAfter(showNext);
-  //   setEndPage(endPage);
-  //   setBeginPage(beginPage);
-  //   for (let i = beginPage; i <= lastPage; i++) {
-  //     console.log(i);
-  //     navigation.push({ value: i });
-  //   }
-  //   console.log("nav : ", nav);
-  //   setNav((nav) => [ navigation]);
-  //   console.log("<<<<<<<<< navigation : ", navigation);
-  //   console.log(nav);
+  useEffect(() => {
+    const data = {
+      startPage: beginPage,
+      lastPage: endPage,
+    };
+    console.log("data is :", data);
+    console.log("pagingData is : ", { ...pagingData });
+    setPagingData({ data });
 
-  //   console.log("data from BoardNavigation : ", ph);
-  // }, []);
+    for (let i = beginPage; i <= endPage; i++) {}
 
-  const onClickHandler = async (e) => {};
+    console.log("pagingData is :---> ", pagingData);
+  }, [ph]);
 
   return (
     <>

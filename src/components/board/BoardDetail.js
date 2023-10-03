@@ -2,46 +2,36 @@ import classes from "./BoardDetail.module.css";
 import { useCallback, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BoardDetail = ({ bno }) => {
+const BoardDetail = ({ detail }) => {
   const [isValid, setIsValid] = useState(true);
-  const [boardDetail, setBoardDetail] = useState("");
+
   const [title, setTitle] = useState("");
   const [writer, setWriter] = useState("");
   const [content, setContent] = useState("");
-  useEffect(() => {
-    const getBoard = async () => {
-      const url = "http://localhost/board/detail/" + bno;
-      const obj = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      };
 
-      setIsValid(false);
-      const response = await fetch(url, obj).then();
-      const board = await response.json();
-      setBoardDetail(board);
-      const { title, writer, content } = board;
-      setTitle(title);
-      setWriter(writer);
-      setContent(content);
-      setIsValid(true);
-    };
-    getBoard();
-  }, []);
+  
 
+  useEffect(
+    ()=>{
+      setTitle(detail.title);
+      setWriter(detail.writer);
+      setContent(detail.content);
+    },[detail]
+  )
+
+  console.log('<<< detail is : ',detail)
   const titleRef = useRef();
   const writerRef = useRef();
   const contentRef = useRef();
 
-  console.log("<<<<<<<< boardDetail is : ", boardDetail);
 
   const navigate = useNavigate();
-  console.log(bno);
+ 
   const deleteBoard = useCallback(async () => {
     const bool = window.confirm("삭제 하시겠습니까?");
     if (!bool) return;
-    console.log("bno for trasfer : ", bno);
-    const url = "http://localhost/board/board/" + bno;
+    console.log("bno for trasfer : ", detail.bno);
+    const url = "http://localhost/board/board/" + detail.bno;
     const obj = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -75,7 +65,7 @@ const BoardDetail = ({ bno }) => {
       title: titleref,
       writer: writerref,
       content: contentref,
-      bno: bno,
+      bno: detail.bno,
     };
 
     const url = "http://localhost/board/board";
