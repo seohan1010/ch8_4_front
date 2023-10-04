@@ -18,6 +18,8 @@
   margin-right:3px;
   margin-top:13px;
   width:30px;
+  
+  
 }
 
 .showPrev {
@@ -31,7 +33,7 @@ background-color: white;
 
 .button{
   display:inline-block;
-  border:2px solid black;
+  border:1px solid black;
   padding:2px 5px 2px;
   margin:auto;
   margin-top:2px;
@@ -42,8 +44,9 @@ background-color: white;
 
 .showNext {
 border:1px solid black;
+border-radius:3px;
 display:inline-block;
 width:30px;
-height:30px;
+height:26px;
 background-color: white;
 }

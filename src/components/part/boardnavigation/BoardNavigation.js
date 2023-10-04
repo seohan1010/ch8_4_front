@@ -1,49 +1,67 @@
 import { useState, useEffect } from "react";
 import classes from "./BoardNavigation.module.css";
 
-const BoardNavigation = ({ ph }) => {
-  const {
-    totalCnt,
-    pageSize,
-    naviSize,
-    page,
-    beginPage,
-    endPage,
-    showPrev,
-    showNext,
-  } = ph;
+const BoardNavigation = ({  resData }) => {
 
-  console.log('------------------ ph : '+totalCnt+'------------------');
 
-  const [pagingData, setPagingData] = useState({ startPage: 1, lastPage: 10 });
-  const [nav, setNav] = useState([
-    { value: 1 },
-    { value: 2 },
-    { value: 3 },
-    { value: 4 },
-    { value: 5 },
-    { value: 6 },
-    { value: 7 },
-    { value: 8 },
-    { value: 9 },
-    { value: 10 },
-  ]);
+  const [nav, setNav] = useState([]);
   const [showBefore, setShowBefore] = useState(true);
   const [showAfter, setShowAfter] = useState(true);
+  const [startPage, setStartPage] = useState(1);
+  const [lastPage, setLastPage] = useState(10);
+  const [curNav, setCurNav] = useState(1);
+  const [ list, setList ] = useState([]);
 
+  
   useEffect(() => {
-    const data = {
-      startPage: beginPage,
-      lastPage: endPage,
+    const getBoard = async (curNav) => {
+      const url = "http://localhost/board/board?page=" + curNav;
+      const data = {};
+
+      const response = await fetch(url, data).then((res) => res);
+      const resData = await response.json();
+      const { list, ph } = resData;
+
+      const {
+        totalCnt,
+        pageSize,
+        naviSize,
+        totalPage,
+        page,
+        beginPage,
+        endPage,
+        showPrev,
+        showNext
+      }=ph;
+
+
+
+      setStartPage(beginPage);
+      setLastPage(endPage);
+      setShowBefore(showPrev);
+      setShowAfter(showNext);
+
+      setList(list);
+
     };
-    console.log("data is :", data);
-    console.log("pagingData is : ", { ...pagingData });
-    setPagingData({ data });
 
-    for (let i = beginPage; i <= endPage; i++) {}
+    getBoard(curNav);
 
-    console.log("pagingData is :---> ", pagingData);
-  }, [ph]);
+    const naviData = [];
+
+    for (let i = startPage; i <= lastPage; i++) {
+      naviData.push({ id: i });
+    }
+    console.log("<<<<<<< naviData : ", naviData);
+    setNav(naviData);
+    resData(list);
+  }, [curNav]);
+
+  const onClickHandler = (curNav) => {
+    console.log(curNav);
+    setCurNav(curNav);
+ 
+  };
 
   return (
     <>
@@ -51,12 +69,14 @@ const BoardNavigation = ({ ph }) => {
         {showBefore && <button className={classes.showPrev}>{"<"}</button>}
 
         {nav.map((data) => (
-          <li className={classes.nav_li} key={data.value}>
+          <li className={classes.nav_li} key={data.id}>
             <button
+              onClick={(e) => {
+                onClickHandler(e.target.innerHTML);
+              }}
               className={classes.button}
-              onClick={(e) => console.log(e.target.innerHTML)}
             >
-              {data.value}
+              {data.id}
             </button>
           </li>
         ))}

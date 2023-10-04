@@ -15,3 +15,7 @@ return (
 
 
 export default NewBoardPage;
+
+export async function action (){
+        
+}

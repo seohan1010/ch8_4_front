@@ -13,7 +13,7 @@ const BoardList = (props) => {
   const [navigationData, setNavigationData] = useState("");
   const [page, setPage] = useState("");
 
-     const {list, ph} = props.board;
+  const { list, ph } = props.board;
 
   useEffect(() => {
     setBoard(list);
@@ -68,6 +68,11 @@ const BoardList = (props) => {
     // setBoard(board);
   };
 
+  const boardData = useCallback((boardData) => {
+      console.log('data from board list ',boardData)
+      setBoard(boardData);
+  }, []);
+
   return (
     <>
       <BoardSearch searchedBoardHandler={searchedBoardHandler} />
@@ -113,7 +118,7 @@ const BoardList = (props) => {
             )}
           </tbody>
         </table>
-        { <BoardNavigation pageData={page} ph={ph} />}
+        {<BoardNavigation resData={boardData} pageData={page} ph={ph} />}
         <button
           className={classes.button}
           onClick={() => {

@@ -62,6 +62,7 @@ const WriteBoard = () => {
       <div className={classes.write_board_wrap}>
         <label htmlFor="title">title</label>
         <input
+          placeholder="please enter title."
           type="text"
           name="title"
           className={classes.write_board_title}
@@ -70,6 +71,7 @@ const WriteBoard = () => {
         <br />
         <label htmlFor="writer">writer</label>
         <input
+        placeholder="please enter witer."
           type="text"
           name="writer"
           className={classes.write_board_writer}
@@ -78,6 +80,7 @@ const WriteBoard = () => {
         <br />
         <div style={{ transform: "translateX(13px)" }}>content</div>
         <textarea
+        placeholder="please enter content."
           type="text"
           name="content"
           className={classes.write_board_content}

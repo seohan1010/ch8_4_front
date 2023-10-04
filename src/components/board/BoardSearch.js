@@ -61,7 +61,7 @@ props.searchedBoardHandler(data);
         className={classes.select}
  
       >
-        <option value="A">제목+내용 </option>
+        <option value="A">제목+내용</option>
         <option value="T">제목만</option>
         <option value="W">작성자</option>
       </select>

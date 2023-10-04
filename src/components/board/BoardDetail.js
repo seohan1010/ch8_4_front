@@ -13,13 +13,14 @@ const BoardDetail = ({ detail }) => {
 
   useEffect(
     ()=>{
+      console.log('<<< detail is : ',detail)
       setTitle(detail.title);
       setWriter(detail.writer);
       setContent(detail.content);
     },[detail]
   )
 
-  console.log('<<< detail is : ',detail)
+
   const titleRef = useRef();
   const writerRef = useRef();
   const contentRef = useRef();
@@ -102,6 +103,7 @@ const BoardDetail = ({ detail }) => {
       <div className={classes.board_detail_wrap}>
         <label htmlFor="title">title</label>
         <input
+      
           type="text"
           name="title"
           className={classes.board_detail_title}
