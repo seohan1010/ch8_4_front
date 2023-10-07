@@ -6,7 +6,7 @@ const BoardNavigation = ({ resData }) => {
   const [showBefore, setShowBefore] = useState(true);
   const [showAfter, setShowAfter] = useState(true);
   const [startPage, setStartPage] = useState(1);
-  const [lastPage, setLastPage] = useState(10);
+  const [lastPage, setLastPage] = useState(1);
   const [curNav, setCurNav] = useState(1);
   const [list, setList] = useState([]);
 

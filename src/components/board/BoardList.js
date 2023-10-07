@@ -8,15 +8,22 @@ import BoardNavigation from "../part/boardnavigation/BoardNavigation";
 const BoardList = (props) => {
   const navigate = useNavigate();
 
-  const [board, setBoard] = useState("");
+  const [board, setBoard] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [navigationData, setNavigationData] = useState("");
   const [page, setPage] = useState("");
 
-  const { list, ph } = props.board;
+  const { list, ph } = props.board; // loader 함수에서 넘어온 값들이다.
 
   useEffect(() => {
-    setBoard(list);
+    if (list.size === 0|| list === undefined) {
+      setIsValid(false);
+      setBoard([]);
+      return;
+    } else if (list.size !== 0 || list !== undefined) {
+      setBoard(list);
+      setIsValid(true);
+    }
   }, [props]);
 
   const searchBoard = useCallback(async (board) => {
@@ -36,23 +43,21 @@ const BoardList = (props) => {
       const data = response.status;
       console.log(data);
       const list = await response.json();
-      console.log(
-        "<<<<<<<<<< list.length : ",
-        list.length !== undefined ? list.length : "[]"
-      );
-      if (list.length !== 0 || list !== undefined) {
+
+      if (list.length !== 0 ) {
+        setIsValid(true);
         setBoard(list);
-      } else if (list.length === 0 || list === undefined || list === null) {
+        return;
+      } else if (list.length === 0 ) {
+        setIsValid(false);
         setBoard([]);
+        return;
       }
 
       setIsValid(true);
     } catch (err) {
       console.log("<<<<<<< err :" + err);
-      console.log(
-        "<<<<<<<< board.length : ",
-        board.length !== undefined ? board.length : "[]"
-      );
+      setIsValid(false);
       setBoard([]);
     }
   }, []);
@@ -62,15 +67,14 @@ const BoardList = (props) => {
   };
 
   const searchedBoardHandler = (board) => {
-    console.log(board);
     console.log("hello");
     searchBoard(board);
     // setBoard(board);
   };
 
   const boardData = useCallback((boardData) => {
-      console.log('data from board list ',boardData)
-      setBoard(boardData);
+    console.log("data from board list ", boardData);
+    setBoard(boardData);
   }, []);
 
   return (
@@ -97,7 +101,7 @@ const BoardList = (props) => {
             {/* map에 객체가 들어간 배열이 들어간 값의 변수가 앞에 오지 않으면은
           에러가 발생한다. 
           ---> map에서 사용하는 변수의 state를 잘 관리해주자. */}
-            {board.length !== 0 ? (
+            { isValid ? (
               board.map((board) => (
                 <tr key={board.bno} className={classes.table_tr}>
                   <td className={classes.table_td}>{board.writer}</td>
