@@ -35,7 +35,7 @@ const BoardList = (props) => {
     };
 
     try {
-      setIsValid(false);
+      // setIsValid(false);
       const response = await fetch(url, obj).then((res) => res);
 
       console.log("fetch data has been transfered");
