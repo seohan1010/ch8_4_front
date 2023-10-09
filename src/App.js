@@ -1,5 +1,4 @@
 import "./App.css";
-import Navigation from "./components/navigation/Navigation";
 import HomePage from "./pages/HomePage";
 import BoardPage from "./pages/BoardPage";
 import RootLayout from "./pages/Root";

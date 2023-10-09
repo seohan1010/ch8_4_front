@@ -4,7 +4,6 @@ import Navigation from "../components/navigation/Navigation";
 const RootLayout = () => {
 
 
-
   return (
     <>
       <Navigation />
