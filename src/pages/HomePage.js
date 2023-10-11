@@ -17,10 +17,11 @@ const Test = () => {
     <Fragment>
       
 
-      <div>This is Homepage</div>
+      <div>This is Homepage</div>s
       <p>
         <button onClick={navigateHandler}>check-out new board</button>
       </p>
+      <a style={{border:'1px solid black'}} href='/Test'>test page</a>
       <TestTable></TestTable>
     </Fragment>
   );

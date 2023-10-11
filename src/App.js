@@ -9,6 +9,8 @@ import NewBoardPage from "./pages/NewBoardPage";
 import {loader as boardLoader } from "./pages/BoardPage";
 import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
 
+
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -44,6 +46,7 @@ const router = createBrowserRouter([
         loader: boardDetailLoader,
       },
       { path: "/board/:bno/edit", element: <BoardEditPage /> },
+   
     ],
   },
 ]);

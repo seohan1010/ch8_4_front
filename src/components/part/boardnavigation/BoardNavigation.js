@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import classes from "./BoardNavigation.module.css";
 
 const BoardNavigation = ({ resData }) => {
+
+
+
   const [nav, setNav] = useState([]);
   const [showBefore, setShowBefore] = useState(true);
   const [showAfter, setShowAfter] = useState(true);
   const [startPage, setStartPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
+  const [lastPage, setLastPage] = useState(10);
   const [curNav, setCurNav] = useState(1);
   const [list, setList] = useState([]);
 
