@@ -10,7 +10,6 @@ import { loader as boardLoader } from "./pages/BoardPage";
 import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
 import Test from "./pages/Test";
 
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -46,14 +45,11 @@ const router = createBrowserRouter([
         loader: boardDetailLoader,
       },
       { path: "/board/:bno/edit", element: <BoardEditPage /> },
-      { path: "/Test", element: <Test /> },
     ],
   },
 ]);
 
 function App() {
-
-
   return (
     <RouterProvider router={router}>
       <div className="App">
