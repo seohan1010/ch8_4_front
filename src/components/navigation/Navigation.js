@@ -10,7 +10,7 @@ return(
     <div className={classes.navigation_wrap}>
             <div className={classes.title}><Link to={'/'} className={classes.title_anchior_tag} >ch8_4</Link></div>
 
-            <ul>
+            <ul className={classes.button_wrap}>
           
                  <List className={classes.li_first} href={'/'} content={'home'} />
                  <List className={classes.li_second} href={'/board'} content={'board'} />

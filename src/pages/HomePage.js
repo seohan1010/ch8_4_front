@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalContent from "../components/part/modalcontent/ModalContent";
+import BoardComment from "../components/comment/BoardComment";
 
 const Test = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Test = () => {
         test page
       </a>
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
+      {<BoardComment />}
     </Fragment>
   );
 };

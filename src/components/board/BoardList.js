@@ -1,5 +1,5 @@
 import classes from "./BoardList.module.css";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BoardSearch from "./BoardSearch";
 import BoardNavigation from "../part/boardnavigation/BoardNavigation";
@@ -16,7 +16,7 @@ const BoardList = (props) => {
   const { list, ph } = props.board; // loader 함수에서 넘어온 값들이다.
 
   useEffect(() => {
-    if (list.size === 0|| list === undefined) {
+    if (list.size === 0 || list === undefined) {
       setIsValid(false);
       setBoard([]);
       return;
@@ -44,11 +44,11 @@ const BoardList = (props) => {
       console.log(data);
       const list = await response.json();
 
-      if (list.length !== 0 ) {
+      if (list.length !== 0) {
         setIsValid(true);
         setBoard(list);
         return;
-      } else if (list.length === 0 ) {
+      } else if (list.length === 0) {
         setIsValid(false);
         setBoard([]);
         return;
@@ -78,20 +78,20 @@ const BoardList = (props) => {
   }, []);
 
   return (
-    <>
+    <div className={classes.page_wrap}>
+      {/* <div className={classes.menu_wrap}>
+        <ul className={classes.board_list_ul}>
+          menu
+          <li>hello</li>
+          <li>i'm here</li>
+        </ul>
+      </div> */}
       <BoardSearch searchedBoardHandler={searchedBoardHandler} />
 
       <div className={classes.span}>
         <span className={classes.span_writer}>writer</span>
         <span className={classes.span_title}>title</span>
         <span className={classes.span_write_date}>write date</span>
-      </div>
-      <div className={classes.menu_wrap}>
-        <ul className={classes.board_list_ul}>
-          menu
-          <li>hello</li>
-          <li>i'm here</li>
-        </ul>
       </div>
 
       <div className={classes.test_wrap}>
@@ -101,7 +101,7 @@ const BoardList = (props) => {
             {/* map에 객체가 들어간 배열이 들어간 값의 변수가 앞에 오지 않으면은
           에러가 발생한다. 
           ---> map에서 사용하는 변수의 state를 잘 관리해주자. */}
-            { isValid ? (
+            {isValid ? (
               board.map((board) => (
                 <tr key={board.bno} className={classes.table_tr}>
                   <td className={classes.table_td}>{board.writer}</td>
@@ -132,7 +132,7 @@ const BoardList = (props) => {
           addBoard
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

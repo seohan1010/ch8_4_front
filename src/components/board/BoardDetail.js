@@ -1,6 +1,6 @@
 import classes from "./BoardDetail.module.css";
 import { useCallback, useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const BoardDetail = ({ detail }) => {
   const [isValid, setIsValid] = useState(true);
@@ -9,25 +9,20 @@ const BoardDetail = ({ detail }) => {
   const [writer, setWriter] = useState("");
   const [content, setContent] = useState("");
 
-  
+  useEffect(() => {
+    console.log("<<< detail is : ", detail);
+    setTitle(detail.title);
+    setWriter(detail.writer);
+    setContent(detail.content);
 
-  useEffect(
-    ()=>{
-      console.log('<<< detail is : ',detail)
-      setTitle(detail.title);
-      setWriter(detail.writer);
-      setContent(detail.content);
-    },[detail]
-  )
-
+  }, [detail]);
 
   const titleRef = useRef();
   const writerRef = useRef();
   const contentRef = useRef();
 
-
   const navigate = useNavigate();
- 
+
   const deleteBoard = useCallback(async () => {
     const bool = window.confirm("삭제 하시겠습니까?");
     if (!bool) return;
@@ -103,7 +98,6 @@ const BoardDetail = ({ detail }) => {
       <div className={classes.board_detail_wrap}>
         <label htmlFor="title">title</label>
         <input
-      
           type="text"
           name="title"
           className={classes.board_detail_title}
@@ -160,6 +154,14 @@ const BoardDetail = ({ detail }) => {
 
         <br />
       </div>
+
+      <p>
+        <Link to=".." relative="path">
+          Back
+        </Link>
+      </p>
+      {'this is for write comment'}
+      {'this is for comment'}
     </>
   );
 };

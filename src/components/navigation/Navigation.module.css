@@ -25,14 +25,20 @@ object-position: center top; */
   max-width: 100%;
 }
 
-
+.button_wrap {
+  margin: auto;
+  margin-top: 10px;
+  position: absolute;
+  display: inline-block;
+  transform: translateX(1000px);
+}
 
 .li_first {
   margin: auto;
   border: 1px solid black;
   border-radius: 3px;
   width: 60px;
-  transform: translateX(1000px);
+  margin-right: 20px;
   display: inline-block;
   color: black;
   text-align: center;
@@ -40,10 +46,11 @@ object-position: center top; */
 
 .li_second {
   margin: auto;
+  margin-right: 20px;
   border: 1px solid black;
   border-radius: 3px;
   width: 60px;
-  transform: translateX(1030px);
+
   justify-self: right;
   display: inline-block;
   color: black;
@@ -55,26 +62,19 @@ object-position: center top; */
   border: 1px solid black;
   border-radius: 3px;
   width: 60px;
-  transform: translateX(1060px);
   display: inline-block;
   color: black;
   text-align: center;
 }
 
- .li_third:hover{
-
+.li_third:hover {
   background-color: rgb(98, 149, 132);
-
 }
 
-.li_first:hover{
-
+.li_first:hover {
   background-color: rgb(98, 149, 132);
-
 }
 
-.li_second:hover{
-
+.li_second:hover {
   background-color: rgb(98, 149, 132);
-
 }

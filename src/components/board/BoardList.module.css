@@ -1,33 +1,34 @@
-.menu_wrap{
-height:538px;
-width:150px;
-display:inline-block;
-border:1px solid black;
-top:-410px;
-left:-200px;
-position:relative;
-border-radius:3px;
-
+.page_wrap {
+  border: 5px solid black;
+  position: relative;
 }
 
-.board_list_ul{
-border:1px solid black;
-border-radius:3px;
-
+.menu_wrap {
+  height: 538px;
+  width: 150px;
+  display: inline-block;
+  border: 1px solid black;
+  transform: translate(-70px, -100px);
+  border-radius: 3px;
 }
 
-li{
+.board_list_ul {
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 3px;
+}
 
-border:1px solid black;
-margin:3px 10px 5px 1px ;
-margin-left: -15px;
-border-radius:3px;
+li {
+  border: 1px solid black;
+  margin: 3px 10px 5px 1px;
+  margin-left: -15px;
+  border-radius: 3px;
 }
 
 .test_wrap {
-  margin: auto;
-  border:3px solid black;
-  padding:20px;
+  border: 3px solid black;
+  padding: 20px;
   border-radius: 5px;
   height: 400px;
   width: 900px;
@@ -36,45 +37,40 @@ border-radius:3px;
   padding-bottom: 5px;
   display: inline-block;
   text-align: center;
-  position:relative;
-  transform:translateX(-50px);
+  position: relative;
+  transform: translateX(70px);
   max-width: 1000px;
 }
 
-
 .span {
+  position: relative;
   border: 1px solid black;
   border-radius: 3px;
   text-align: center;
-  margin: auto;
   height: 25px;
-  margin-top: 30px;
+  margin:auto;
   margin-bottom: 10px;
   width: 900px;
-  transform:translateX(30px);
+  transform: translateX(70px);
 }
-
 
 /*  span 정렬  */
 
-.span_writer{
-
-    transform:translateX(-200px);
-
+.span_writer {
+  transform: translateX(-200px);
 }
 
-.span_write_date{
-  transform:translateX(300px);
+.span_write_date {
+  transform: translateX(300px);
 }
 
-.span_title{
-
-  transform:translateX(90px);
-
+.span_title {
+  transform: translateX(90px);
 }
-
 
 .list_wrap {
+  position: relative;
+  display: inline-block;
   margin: auto;
   margin: 10px 0px 10px;
   border: 2px solid black;
@@ -94,70 +90,60 @@ border-radius:3px;
 span {
   display: inline-block;
   margin: 0px 100px 100px 0px;
-  margin-top:15;
-  width: fit-content ;
-  transform:translateX(50px);
-  
+  margin-top: 15;
+  width: fit-content;
+  transform: translateX(50px);
 }
 
 .button {
- 
   position: absolute;
-  display:inline-block;
-  border-radius:5px;
+  display: inline-block;
+  border-radius: 5px;
   background-color: rgb(146, 87, 146);
   font-size: medium;
-  bottom:12px;
-  right:6px;
-  height:35px;
-  width:100px;
+  bottom: 12px;
+  right: 6px;
+  height: 35px;
+  width: 100px;
 }
-
 
 /* 이게 되네..... */
 
-.table_td_title:hover{
-  color:greenyellow;
+.table_td_title:hover {
+  color: greenyellow;
 }
-
 
 /* table css */
 
-.table_wrap{
-
-  border-top:2px solid black;
-  border-bottom:1px solid black;
-   width:900px;
-   margin:auto;
-   
+.table_wrap {
+  position: relative;
+  display:inline-block;
+  border-top: 2px solid black;
+  border-bottom: 1px solid black;
+  margin: auto;
 }
-
 
 tr:nth-child(even) {
   background-color: #f0f0f070;
 }
 
-.table_tr{
-border-top:2px solid black;
-border:10px solid black;
-
-
+.table_tr {
+  border-top: 2px solid black;
+  border: 10px solid black;
 }
 
-.table_td_title{
-
-  width:450px;
-
+.table_td_title {
+  width: 450px;
 }
 
-.table_td{
-  border-top:1px solid black  ;
-  height:30px;
-  margin:0%;
-  padding:0px 0px 0px 0px ;
+.table_td {
+  border-top: 1px solid black;
+  height: 30px;
+  margin: 0%;
+  padding: 0px 0px 0px 0px;
 }
 
-.td_link:hover{
-  color:green;
- font-size:17px;
+.td_link:hover {
+  color: green;
+  font-size: 17px;
 }

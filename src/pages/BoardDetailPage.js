@@ -15,11 +15,7 @@ const data = useLoaderData();
      
     
       <BoardDetail detail={data} />
-      <p>
-        <Link to=".." relative="path">
-          Back
-        </Link>
-      </p>
+    
     </>
   );
 };
