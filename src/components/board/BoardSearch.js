@@ -15,8 +15,7 @@ const BoardSearch = (props) => {
     setkeyword(e.target.value);
   };
 
-
-
+        
 
   const onClickHandler = async() => {
 
@@ -51,6 +50,7 @@ props.searchedBoardHandler(data);
       props.searchedBoardHandler(data);
     }
  }
+
 
   return (
     <div className={classes.board_search_form}>

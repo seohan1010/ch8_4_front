@@ -1,6 +1,7 @@
 import classes from "./BoardDetail.module.css";
 import { useCallback, useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import BoardComment from "../comment/BoardComment";
 
 const BoardDetail = ({ detail }) => {
   const [isValid, setIsValid] = useState(true);
@@ -9,12 +10,12 @@ const BoardDetail = ({ detail }) => {
   const [writer, setWriter] = useState("");
   const [content, setContent] = useState("");
 
+
   useEffect(() => {
     console.log("<<< detail is : ", detail);
     setTitle(detail.title);
     setWriter(detail.writer);
     setContent(detail.content);
-
   }, [detail]);
 
   const titleRef = useRef();
@@ -93,6 +94,8 @@ const BoardDetail = ({ detail }) => {
     }
   };
 
+ 
+
   return (
     <>
       <div className={classes.board_detail_wrap}>
@@ -160,8 +163,8 @@ const BoardDetail = ({ detail }) => {
           Back
         </Link>
       </p>
-      {'this is for write comment'}
-      {'this is for comment'}
+      {"this is for write comment"}
+      { <BoardComment data={detail.bno} />}
     </>
   );
 };
