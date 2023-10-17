@@ -132,6 +132,11 @@ tr:nth-child(even) {
   border: 10px solid black;
 }
 
+.table_td_writer{
+width:100px;
+padding-right: 10px;
+}
+
 .table_td_title {
   width: 450px;
 }
@@ -140,7 +145,7 @@ tr:nth-child(even) {
   border-top: 1px solid black;
   height: 30px;
   margin: 0%;
-  padding: 0px 0px 0px 0px;
+  padding: 0px 5px 0px;
 }
 
 .td_link:hover {

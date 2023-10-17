@@ -1,0 +1,103 @@
+.comment_card {
+  border: 1px solid black;
+  position: relative;
+  width: 700px;
+  margin: auto;
+}
+
+.comment_wrap {
+  border: 2px solid purple;
+  border-radius: 3px;
+  width: 500px;
+  height: 175px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.comment_header {
+  position: relative;
+  border: 3px solid rgb(104, 199, 77);
+  border-radius: 3px;
+  margin: auto;
+  width: 490px;
+  height: 30px;
+}
+
+.bno_span {
+  display: inline-block;
+  width: 100px;
+  margin-right: 5px;
+  margin-top: 3px;
+  border: 1px soild black;
+  background-color: orange;
+  transform: translateX(-220px);
+  position: absolute;
+}
+
+.bno_number_span {
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 3px;
+  border: 1px soild black;
+  background-color: orange;
+  transform: translateX(-110px);
+  position: absolute;
+}
+
+.comment_writer_span_1 {
+  position: absolute;
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 3px;
+  background-color: orange;
+  transform: translateX(10px);
+}
+
+/* absolute로 지정하면은 부모 컴포넌트의 특정한 위치에 고정되는거 같다. */
+.comment_writer_span_2 {
+  display: inline-block;
+  transform: translateX(70px);
+  margin-top: 3px;
+  background-color: orange;
+  position: absolute;
+}
+
+.comment_content_wrap {
+  border: 2px solid red;
+  border-radius: 3px;
+
+  min-width: 480px;
+  max-width: 480px;
+  min-height: 100px;
+  max-height: 100px;
+  margin: auto;
+  margin-top: 5px;
+}
+
+.edit_button {
+  transform: translateX(150px);
+  width: 60px;
+  margin-top: 3px;
+  border-style: none;
+  border-radius: 3px;
+  height: 23px;
+}
+
+.delete_button {
+  transform: translateX(170px);
+  width: 60px;
+  margin-top: 3px;
+  border-style: none;
+  border-radius: 3px;
+  height: 23px;
+}
+.delete_button:hover {
+  background-color: rgb(196, 182, 210);
+  font-size: 14px;
+}
+
+.edit_button:hover {
+  background-color: rgb(196, 182, 210);
+  font-size: 14px;
+}

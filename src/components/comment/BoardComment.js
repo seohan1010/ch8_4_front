@@ -1,7 +1,7 @@
 import classes from "./BoardComment.module.css";
 import { useState, useEffect } from "react";
 
-const BoardComment = ({ data }) => {
+const BoardComment = ({ data, onChange }) => {
   const [comment, setComment] = useState("");
   const [isValid, setIsValid] = useState(false);
   console.log("received data is", data);
@@ -34,7 +34,7 @@ const BoardComment = ({ data }) => {
       }
     };
     getComment();
-  }, []);
+  }, [onChange, data]); // data는 바뀌지 않지만 useEffect()에서 사용하기 때문에 추가 해주었다.
 
   return (
     <div className={classes.comment_card}>

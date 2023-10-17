@@ -41,7 +41,7 @@ const BoardList = (props) => {
       console.log("fetch data has been transfered");
       console.log(response);
       const data = response.status;
-      console.log(data);
+      console.log("data", data);
       const list = await response.json();
 
       if (list.length !== 0) {
@@ -104,7 +104,7 @@ const BoardList = (props) => {
             {isValid ? (
               board.map((board) => (
                 <tr key={board.bno} className={classes.table_tr}>
-                  <td className={classes.table_td}>{board.writer}</td>
+                  <td className={classes.table_td_writer}>{board.writer}</td>
                   <td className={classes.table_td}>{board.bno}</td>
                   <td className={classes.table_td_title}>
                     <Link
