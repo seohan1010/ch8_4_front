@@ -26,6 +26,8 @@ const BoardList = (props) => {
     }
   }, [props]);
 
+
+  
   const searchBoard = useCallback(async (board) => {
     const url = "http://localhost/board/search";
     const obj = {

@@ -1,15 +1,10 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalContent from "../components/part/modalcontent/ModalContent";
-import { userAuth } from "../redux/action";
-import { useDispatch, useSelector } from "react-redux";
 import WriteBoardComment from "../components/comment/WriteBoardComment";
 
 const Test = () => {
-  const result = useSelector((state) => state.userData);
-  console.warn("value from useSelector", result);
 
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -27,11 +22,10 @@ const Test = () => {
     navigate("/board");
   };
 
-  const product = {
-    name: "i phone",
-    category: "mobile",
-    price: 100000,
-    color: "red",
+  const user_info = {
+    email: "test email",
+    name: "test name",
+    password: "test possword",
   };
 
   return (
@@ -51,17 +45,16 @@ const Test = () => {
       >
         <span>{"this is for test "}</span>
       </div>
+      <br />
+ 
+      <br />
       <a style={{ border: "1px solid black" }} href="/Test">
         test page
       </a>
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
-      <button
-        onClick={() => {
-          dispatch(userAuth(product));
-        }}
-      >
-        addComment
-      </button>
+
+
+
       <WriteBoardComment />
     </Fragment>
   );

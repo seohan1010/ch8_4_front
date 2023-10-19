@@ -10,9 +10,9 @@ const BoardDetail = ({ detail }) => {
   const [title, setTitle] = useState("");
   const [writer, setWriter] = useState("");
   const [content, setContent] = useState("");
-  const [commentChanged, setCommentChanged] = useState(false);  // 한번 true가 되면은 계속해서 true 이기 
-                                                                // 때문에 처음을 제외하고는 
-                                                                // BoardComment가 리렌더링 되지 않는다. 
+  const [commentChanged, setCommentChanged] = useState(false); // 한번 true가 되면은 계속해서 true 이기
+  // 때문에 처음을 제외하고는
+  // BoardComment가 리렌더링 되지 않는다.
   useEffect(() => {
     console.log("<<< detail is : ", detail);
     setTitle(detail.title);
@@ -97,7 +97,9 @@ const BoardDetail = ({ detail }) => {
   };
 
   const commentChangeHandler = () => {
-    setCommentChanged(true);
+    commentChanged === false
+      ? setCommentChanged(true)
+      : setCommentChanged(false);
   };
 
   return (
