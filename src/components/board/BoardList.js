@@ -26,8 +26,6 @@ const BoardList = (props) => {
     }
   }, [props]);
 
-
-  
   const searchBoard = useCallback(async (board) => {
     const url = "http://localhost/board/search";
     const obj = {
@@ -37,15 +35,15 @@ const BoardList = (props) => {
     };
 
     try {
-      // setIsValid(false);
+      setIsValid(false); //게시판 목록을 보여주지 않게 설정
       const response = await fetch(url, obj).then((res) => res);
 
       console.log("fetch data has been transfered");
       console.log(response);
       const data = response.status;
       console.log("data", data);
-      const list = await response.json();
-
+      const { list, ph } = await response.json();
+      console.log("searched boardlist", list, ph);
       if (list.length !== 0) {
         setIsValid(true);
         setBoard(list);

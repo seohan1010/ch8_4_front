@@ -6,6 +6,8 @@ import ErrorPage from "./pages/Error";
 import BoardDetailPage from "./pages/BoardDetailPage";
 import BoardEditPage from "./pages/BoardEditPage";
 import NewBoardPage from "./pages/NewBoardPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import { loader as boardLoader } from "./pages/BoardPage";
 import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
 import Test from "./pages/Test";
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, path: "/", element: <HomePage /> },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
       {
         path: "/board",
         element: <BoardPage />,

@@ -2,13 +2,26 @@ import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalContent from "../components/part/modalcontent/ModalContent";
 import WriteBoardComment from "../components/comment/WriteBoardComment";
+import { useSelector, useDispatch } from "react-redux";
+import { INCREMENT, DECREMENT, INCREASE } from "../store/counter";
 
-const Test = () => {
-
-
+const HomePage = () => {
+  const [modalIsShown, setModalIsShown] = useState(false);
   const navigate = useNavigate();
 
-  const [modalIsShown, setModalIsShown] = useState(false);
+  const dispatch = useDispatch();
+
+  const counter = useSelector((state) => state.counter);
+
+  const incrementHandler = () => {
+    dispatch({ type: INCREMENT });
+  };
+  const increaseHandler = () => {
+    dispatch({ type: INCREASE, value: 5 });
+  };
+  const decrementHandler = () => {
+    dispatch({ type: DECREMENT });
+  };
 
   const showModalHandler = () => {
     setModalIsShown(true);
@@ -20,12 +33,6 @@ const Test = () => {
 
   const navigateHandler = () => {
     navigate("/board");
-  };
-
-  const user_info = {
-    email: "test email",
-    name: "test name",
-    password: "test possword",
   };
 
   return (
@@ -46,18 +53,21 @@ const Test = () => {
         <span>{"this is for test "}</span>
       </div>
       <br />
- 
+      <button onClick={incrementHandler} style={{ marginRight: "20px" }}>
+        increment
+      </button>
+      <button onClick={increaseHandler}>increase</button>
+      <button onClick={decrementHandler}>decrement</button>
+      {`counter is : ${counter}`}
       <br />
       <a style={{ border: "1px solid black" }} href="/Test">
         test page
       </a>
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
 
-
-
       <WriteBoardComment />
     </Fragment>
   );
 };
 
-export default Test;
+export default HomePage;

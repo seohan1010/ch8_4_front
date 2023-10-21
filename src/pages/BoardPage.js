@@ -2,7 +2,7 @@ import BoardList from "../components/board/BoardList";
 import { useLoaderData } from "react-router-dom";
 
 const BoardPage = () => {
-  const data = useLoaderData();
+  const data = useLoaderData(); /// router의 loader함수에서 넘어온 값들이다.
 
   return (
     <>
