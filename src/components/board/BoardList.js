@@ -10,8 +10,8 @@ const BoardList = (props) => {
 
   const [board, setBoard] = useState([]);
   const [isValid, setIsValid] = useState(false);
-  const [navigationData, setNavigationData] = useState("");
   const [page, setPage] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState(false);
 
   const { list, ph } = props.board; // loader 함수에서 넘어온 값들이다.
 
@@ -22,7 +22,7 @@ const BoardList = (props) => {
       return;
     } else if (list.size !== 0 || list !== undefined) {
       setBoard(list);
-      setIsValid(true);
+      const timeoutId = setTimeout(() => setIsValid(true), 1500); // 1.5초 뒤에 화면에 데이터를 출력
     }
   }, [props]);
 
@@ -42,11 +42,14 @@ const BoardList = (props) => {
       console.log(response);
       const data = response.status;
       console.log("data", data);
-      const { list, ph } = await response.json();
+      const { list, ph } = await response.json(); // 데이터를 map으로 받기 때문에 map안에 있는 데이터를 꺼내서 사용한다.
       console.log("searched boardlist", list, ph);
       if (list.length !== 0) {
-        setIsValid(true);
+        // 받은 데이터를 state에 업데이트하고
         setBoard(list);
+        //1.5초후에 결과를 보여준다. ---> 애니메이션을 주면은 좋을거 같다.
+        const timeoutId = setTimeout(() => setIsValid(true), 1500);
+
         return;
       } else if (list.length === 0) {
         setIsValid(false);
@@ -77,16 +80,17 @@ const BoardList = (props) => {
     setBoard(boardData);
   }, []);
 
+  const searchInputHandler = (value) => {
+    console.log("input data from boardList : ", value);
+    setSearchInputValue( value);
+  };
+
   return (
     <div className={classes.page_wrap}>
-      {/* <div className={classes.menu_wrap}>
-        <ul className={classes.board_list_ul}>
-          menu
-          <li>hello</li>
-          <li>i'm here</li>
-        </ul>
-      </div> */}
-      <BoardSearch searchedBoardHandler={searchedBoardHandler} />
+      <BoardSearch
+        searchedBoardHandler={searchedBoardHandler}
+        searchInputValue={searchInputHandler}
+      />
 
       <div className={classes.span}>
         <span className={classes.span_writer}>writer</span>
@@ -122,7 +126,14 @@ const BoardList = (props) => {
             )}
           </tbody>
         </table>
-        {<BoardNavigation resData={boardData} pageData={page} ph={ph} />}
+        {
+          <BoardNavigation
+            searchInputValue={searchInputValue}
+            resData={boardData}
+            pageData={page}
+            ph={ph}
+          />
+        }
         <button
           className={classes.button}
           onClick={() => {

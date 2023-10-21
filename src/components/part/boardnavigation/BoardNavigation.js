@@ -1,52 +1,48 @@
 import { useState, useEffect } from "react";
 import classes from "./BoardNavigation.module.css";
 
-const BoardNavigation = ({ resData }) => {
+export const BEFORE = "before";
+export const AFTER = "after";
 
-
-
+// 처음에 네비게이션에 출력되는 숫자를 백으로부터 받은 데이터를 출력할수 있도록 로직을 수정해 보자
+const BoardNavigation = ({ resData, ph, searchInputValue }) => {
   const [nav, setNav] = useState([]);
   const [showBefore, setShowBefore] = useState(true);
   const [showAfter, setShowAfter] = useState(true);
   const [startPage, setStartPage] = useState(1);
   const [lastPage, setLastPage] = useState(10);
-  const [curNav, setCurNav] = useState(1);
+  const [curNavi, setCurNavi] = useState(1);
   const [list, setList] = useState([]);
 
   // 아래의 코드를 함수로 빼내서 사용하자.
   useEffect(() => {
-    const getBoard = async (curNav) => {
-      const url = "http://localhost/board/board?page=" + curNav;
-      const data = {};
+    console.log("ph from loader : ", ph);
 
-      const response = await fetch(url, data).then((res) => res);
-      const resData = await response.json();
-      const { list, ph } = resData;
+    const {
+      totalCnt,
+      pageSize,
+      naviSize,
+      totalPage,
+      page,
+      beginPage,
+      endPage,
+      showPrev,
+      showNext,
+    } = ph;
 
-      const {
-        totalCnt,
-        pageSize,
-        naviSize,
-        totalPage,
-        page,
-        beginPage,
-        endPage,
-        showPrev,
-        showNext,
-      } = ph;
+    setStartPage(beginPage);
+    setLastPage(endPage);
+    setShowBefore(showPrev);
+    setShowAfter(showNext);
+    setCurNavi(page);
 
-      setStartPage(beginPage);
-      setLastPage(endPage);
-      setShowBefore(showPrev);
-      setShowAfter(showNext);
+    setList(list);
+    // };
 
-      setList(list);
-    };
-
-    getBoard(curNav);
+    // getBoard(curNavi);
 
     const naviData = [];
-    
+
     for (let i = startPage; i <= lastPage; i++) {
       naviData.push({ id: i });
     }
@@ -150,9 +146,9 @@ const BoardNavigation = ({ resData }) => {
   const showArrowHandler = (identifier) => {
     console.log(identifier);
 
-    if (identifier === "before") {
+    if (identifier === BEFORE) {
       getBoardByArrow(startPage - 1);
-    } else if (identifier === "after") {
+    } else if (identifier === AFTER) {
       getBoardByArrow(lastPage + 1);
     }
 
@@ -165,7 +161,7 @@ const BoardNavigation = ({ resData }) => {
         {showBefore && (
           <button
             onClick={() => {
-              showArrowHandler("before");
+              showArrowHandler(BEFORE);
             }}
             className={classes.showPrev}
           >
@@ -179,7 +175,11 @@ const BoardNavigation = ({ resData }) => {
               onClick={(e) => {
                 onClickHandler(e.target.innerHTML);
               }}
-              className={classes.button}
+              className={
+                classes.button + curNavi === data.id
+                  ? classes.button_curNavi_color
+                  : ""
+              }
             >
               {data.id}
             </button>
@@ -189,7 +189,7 @@ const BoardNavigation = ({ resData }) => {
         {showAfter && (
           <button
             onClick={() => {
-              showArrowHandler("after");
+              showArrowHandler(AFTER);
             }}
             className={classes.showNext}
           >
