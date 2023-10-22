@@ -6,7 +6,7 @@ const BoardSearch = (props) => {
 
   // ref도 초기값이 없으면은 undefined 오류를뿜는다. ---> 확실한가?
   const selectedRef = useRef("");
-  const [inputData, setInputData] = useState(false);
+  const [inputData, setInputData] = useState();
 
   const onChangeHandler = (e) => {
     console.log(selectedRef.current.value);
@@ -18,19 +18,11 @@ const BoardSearch = (props) => {
   const onClickHandler = async () => {
     const data = {
       option: selectedRef.current.value,
-      keyword: keyword,
+      keyword: keyword.trim(),
     };
 
-    // setData(data);
-    //     try{
-    //    const searchedBoard = await fetch().then(res => res.json())
-    //    console.log(searchedBoard);
-    //         props.searchedBoardHandler(searchedBoard);
-    //     }catch(err){
-    //         console.log(err);
-    //     }
-    props.searchedBoardHandler(data);
-    props.searchInputValue(inputData);
+    props.searchedBoard(data);
+    props.searchInputValue(data);
   };
 
   const keyPressHandler = (e) => {
@@ -40,8 +32,8 @@ const BoardSearch = (props) => {
     };
 
     if (e.key === "Enter") {
-      props.searchedBoardHandler(data);
-      props.searchInputValue(e.target.value.trim().length !== 0 ? true : false);
+      props.searchedBoard(data);
+      props.searchInputValue(data);
     }
   };
 

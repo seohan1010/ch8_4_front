@@ -11,7 +11,7 @@ const BoardList = (props) => {
   const [board, setBoard] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [page, setPage] = useState("");
-  const [searchInputValue, setSearchInputValue] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState('');
 
   const { list, ph } = props.board; // loader 함수에서 넘어온 값들이다.
 
@@ -47,7 +47,7 @@ const BoardList = (props) => {
       if (list.length !== 0) {
         // 받은 데이터를 state에 업데이트하고
         setBoard(list);
-        //1.5초후에 결과를 보여준다. ---> 애니메이션을 주면은 좋을거 같다.
+        //1.5초후에 결과를 보여준다. ---> 애니메이션을 주면은 좋을거 같다. (3번쩨 프로젝트부터)
         const timeoutId = setTimeout(() => setIsValid(true), 1500);
 
         return;
@@ -70,9 +70,8 @@ const BoardList = (props) => {
   };
 
   const searchedBoardHandler = (board) => {
-    console.log("hello");
+    console.log("data from search board is : ", board);
     searchBoard(board);
-    // setBoard(board);
   };
 
   const boardData = useCallback((boardData) => {
@@ -81,14 +80,13 @@ const BoardList = (props) => {
   }, []);
 
   const searchInputHandler = (value) => {
-    console.log("input data from boardList : ", value);
-    setSearchInputValue( value);
+    setSearchInputValue(value); // 객체로 데이터를 전달한다. 
   };
 
   return (
     <div className={classes.page_wrap}>
       <BoardSearch
-        searchedBoardHandler={searchedBoardHandler}
+        searchedBoard={searchedBoardHandler}
         searchInputValue={searchInputHandler}
       />
 

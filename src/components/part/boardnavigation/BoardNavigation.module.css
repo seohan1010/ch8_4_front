@@ -45,5 +45,6 @@
 }
 
 .button_curNavi_color {
+  border-style: none;
   border: 2px solid orange;
 }
