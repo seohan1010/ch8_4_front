@@ -44,10 +44,15 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        path: "/tests",
+        element: <Test />,
+      },
+      {
         path: "/board",
         element: <BoardPage />,
         loader: boardLoader,
       },
+
       { path: "/board/new", element: <NewBoardPage /> },
       {
         path: "/board/:bno",

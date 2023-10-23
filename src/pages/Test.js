@@ -1,7 +1,7 @@
 const Test = () => {
   return (
     <>
-      <div>
+      <div style={{ width: "700px", height: "500px", margin: "auto" }}>
         <input type="checkbox">this is for test</input>
       </div>
     </>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
@@ -22,13 +22,14 @@ const Navigation = () => {
             href={"/board"}
             content={"board"}
           />
-          {isLoggedIn ? (
+          {!isLoggedIn && (
             <List
               className={classes.li_third}
               href={"/login"}
               content={"login"}
             />
-          ) : (
+          )}{" "}
+          {!isLoggedIn && (
             <List
               className={classes.li_third}
               href={"/register"}

@@ -1,0 +1,32 @@
+.login_wrap {
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 450px;
+  height: 400px;
+}
+
+/* style={{ border: "1px solid black", width: "300px", margin: "auto",margin }} */
+.login_text {
+  width: 300px;
+  margin: auto;
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+.login_button {
+  border-style: none;
+  border-radius: 3px;
+  width: 80px;
+  height: 25px;
+}
+
+.email_input {
+  width: 200px;
+
+}
+
+.password_input {
+  width: 200px;
+
+}
