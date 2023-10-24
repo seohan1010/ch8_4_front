@@ -1,27 +1,23 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalContent from "../components/part/modalcontent/ModalContent";
 import WriteBoardComment from "../components/comment/WriteBoardComment";
 import { useSelector, useDispatch } from "react-redux";
-import { INCREMENT, DECREMENT, INCREASE } from "../store/counter";
+import {
+  BOARD_FETCH_REQUESTED,
+  BOARD_INSERT_REQUESTED,
+  BOARD_UPDATE_REQUESTED,
+} from "../store/index";
 
 const HomePage = () => {
   const [modalIsShown, setModalIsShown] = useState(false);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const counter = useSelector((state) => state.counter);
-
-  const incrementHandler = () => {
-    dispatch({ type: INCREMENT });
-  };
-  const increaseHandler = () => {
-    dispatch({ type: INCREASE, value: 5 });
-  };
-  const decrementHandler = () => {
-    dispatch({ type: DECREMENT });
-  };
+  const boardList = useSelector((state) => state.boardList);
+  useEffect(() => {
+    dispatch({ type: BOARD_FETCH_REQUESTED });
+  }, []);
 
   const showModalHandler = () => {
     setModalIsShown(true);
@@ -35,6 +31,24 @@ const HomePage = () => {
     navigate("/board");
   };
 
+  const updateBoardHandler = () => {
+    const data = {
+      title: "modified with saga title",
+      content: "modified with saga content",
+      bno: "315759",
+    };
+    dispatch({ type: BOARD_UPDATE_REQUESTED, payload: data });
+  };
+
+  const sendBoardDataHandler = () => {
+    const data = {
+      title: "saga test data1",
+      writer: "saga test writer1",
+      content: "saga test content1",
+    };
+    dispatch({ type: BOARD_INSERT_REQUESTED, payload: data });
+  };
+
   return (
     <Fragment>
       <div>This is Homepage</div>
@@ -42,6 +56,11 @@ const HomePage = () => {
       <p>
         <button onClick={navigateHandler}>check-out new board</button>
       </p>
+      <ul>
+        {boardList?.map((data) => (
+          <li key={data.bno}>{data.title}</li>
+        ))}
+      </ul>
       <div
         style={{
           width: "300px",
@@ -53,16 +72,30 @@ const HomePage = () => {
         <span>{"this is for test "}</span>
       </div>
       <br />
-      <button onClick={incrementHandler} style={{ marginRight: "20px" }}>
-        increment
-      </button>
-      <button onClick={increaseHandler}>increase</button>
-      <button onClick={decrementHandler}>decrement</button>
-      {`counter is : ${counter}`}
+
       <br />
-      <a style={{ border: "1px solid black" }} href="/Test">
-        test page
-      </a>
+      <button
+        style={{
+          border: "1px solid black",
+          borderRadius: "3px",
+          height: "25px",
+        }}
+        onClick={sendBoardDataHandler}
+      >
+        test insertBoard button
+      </button>
+      <br />
+      <button
+        style={{
+          marginTop: "25px",
+          border: "1px solid black",
+          borderRadius: "3px",
+          height: "25px",
+        }}
+        onClick={updateBoardHandler}
+      >
+        test updateBoard button
+      </button>
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
 
       <WriteBoardComment />
