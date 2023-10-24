@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { loader as boardLoader } from "./pages/BoardPage";
 import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
+import { loader as tokenLoader } from "./util/auth";
+import { action as logoutAction } from "./pages/Logout";
 import Test from "./pages/Test";
 
 import {
@@ -17,6 +19,7 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
+  redirect,
 } from "react-router-dom";
 
 // const routerDefinitions = createRoutesFromElements(
@@ -33,6 +36,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    loader: () => {
+      const token = localStorage.getItem("email");
+      console.log("token is :" + token);
+      return token;
+    },
     children: [
       { index: true, path: "/", element: <HomePage /> },
       {
@@ -42,6 +50,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/logout",
+        element: <></>,
+        action: () => {
+          localStorage.removeItem("email");
+          return redirect("/");
+        },
       },
       {
         path: "/tests",

@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect, } from "react-router-dom";
 import ModalContent from "../components/part/modalcontent/ModalContent";
 import WriteBoardComment from "../components/comment/WriteBoardComment";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,7 @@ const HomePage = () => {
 
   const dispatch = useDispatch();
   const boardList = useSelector((state) => state.boardList);
+  const value = useSelector((state) => state.value);
   useEffect(() => {
     dispatch({ type: BOARD_FETCH_REQUESTED });
   }, []);
@@ -40,6 +41,13 @@ const HomePage = () => {
     dispatch({ type: BOARD_UPDATE_REQUESTED, payload: data });
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem("email");
+    console.log("button clicked");
+    // redirect("/");
+    redirect("/");
+  };
+
   const sendBoardDataHandler = () => {
     const data = {
       title: "saga test data1",
@@ -56,10 +64,21 @@ const HomePage = () => {
       <p>
         <button onClick={navigateHandler}>check-out new board</button>
       </p>
+      {"value is:" + value ? value : "no data"}
       <ul>
-        {boardList?.map((data) => (
-          <li key={data.bno}>{data.title}</li>
-        ))}
+        {boardList.length !== 0 ? (
+          boardList.map((data) => <li key={data.bno}>{data.title}</li>)
+        ) : (
+          <p
+            style={{
+              border: "1px solid black",
+              width: "200px",
+              margin: "auto",
+            }}
+          >
+            "no data found"
+          </p>
+        )}
       </ul>
       <div
         style={{
@@ -72,7 +91,7 @@ const HomePage = () => {
         <span>{"this is for test "}</span>
       </div>
       <br />
-
+      <button onClick={() => logoutHandler()}>logout button</button>
       <br />
       <button
         style={{

@@ -2,9 +2,13 @@ import classes from "./Navigation.module.css";
 import List from "../part/list/List";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useRouteLoaderData, useLoaderData } from "react-router-dom";
+import { getAuthToken } from "../../util/auth";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const token = getAuthToken(); //뭐지 .....
+  // useRouteLoaderData()로는 해당 route에서 반환하는 값을 받아올수 없다. // 그게 아니라 navigation은 root랑 묶여 있어서 그런거 같다.
+  const token = useLoaderData("root");
 
   return (
     <>
@@ -14,7 +18,7 @@ const Navigation = () => {
             ch8_4
           </Link>
         </div>
-
+        {"token:" + token}
         <ul className={classes.button_wrap}>
           <List className={classes.li_first} href={"/"} content={"home"} />
           <List
@@ -22,18 +26,25 @@ const Navigation = () => {
             href={"/board"}
             content={"board"}
           />
-          {!isLoggedIn && (
+          {!token && (
             <List
               className={classes.li_third}
               href={"/login"}
               content={"login"}
             />
           )}{" "}
-          {!isLoggedIn && (
+          {!token && (
             <List
               className={classes.li_third}
               href={"/register"}
               content={"register"}
+            />
+          )}
+          {token && (
+            <List
+              className={classes.li_third}
+              href={"/logout"}
+              content={"logout"}
             />
           )}
         </ul>

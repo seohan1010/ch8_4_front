@@ -1,5 +1,8 @@
 const BASE_URL = "http://localhost";
 
+const SUCCEED = "succeed";
+const FAILED = "failed";
+
 export const getBoard = async () => {
   // await 안 붙여주면은 Promise객체를 반환 한다. ---> 버전에 따라 차이점이 있는거 같다. (확실한거는 아니다.)
 
@@ -12,10 +15,11 @@ export const getBoard = async () => {
   const data = await fetch(url, obj);
 
   try {
+    throw new Error();
     let { list, ph } = await data.json(); // 백엔드에서 map 형태로 데이터가 들어오므로
-    return list; // 안에있는 데이터를 꺼내서 반환한다.
+    return { list: list, message: SUCCEED }; // 안에있는 데이터를 꺼내서 반환한다.
   } catch (err) {
-    return { message: "error occured" };
+    return { list: [], message: FAILED };
   }
 };
 

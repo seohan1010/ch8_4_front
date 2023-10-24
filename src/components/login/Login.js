@@ -45,18 +45,17 @@ const Login = () => {
       return;
     }
   };
-  // this is for test 
+  // this is for test
 
-  
   // this is for commit rollback test
   const onClickHandler = () => {
     const emailref = emailRef.current.value;
     const passwordref = passwordRef.current.value;
 
     const data = { email: emailref, password: passwordref };
-    const bool = isValid(data);
+    const bool = isValid(data); // input으로 들어온 정보가 유효한 정보인지 확인하는 로직
     if (bool) {
-      login(data);
+      login(data); // 유효성 검증이 완료된 데이터를 백단으로 보내는 함수 호출
     }
 
     console.log(emailref, passwordref);
@@ -66,8 +65,8 @@ const Login = () => {
     <>
       <div className={classes.login_wrap}>
         <h3 className={classes.login_text}>Login</h3>
-        {<p style={{ marginTop: "30px" }}>{message}</p>}
-        <p style={{ marginTop: "150px", alignItems: "center" }}>
+        {<p className={classes.error_message} style={{ marginTop: "30px" }}>{message}</p>}
+        <p style={{ marginTop: "100px", alignItems: "center" }}>
           <label htmlFor="email">email </label>
           <input
             onClick={() => setMessage("")}
