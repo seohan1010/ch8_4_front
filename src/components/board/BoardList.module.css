@@ -49,6 +49,7 @@ li {
   text-align: center;
   height: 25px;
   margin:auto;
+  margin-top:10px;
   margin-bottom: 10px;
   width: 900px;
   transform: translateX(70px);
@@ -57,15 +58,18 @@ li {
 /*  span 정렬  */
 
 .span_writer {
-  transform: translateX(-200px);
+  transform: translateX(-100px);
+  position:relative;
 }
 
 .span_write_date {
   transform: translateX(300px);
+  position:relative;
 }
 
 .span_title {
-  transform: translateX(90px);
+  transform: translateX(190px);
+  position:relative;
 }
 
 .list_wrap {
@@ -90,7 +94,6 @@ li {
 span {
   display: inline-block;
   margin: 0px 100px 100px 0px;
-  margin-top: 15;
   width: fit-content;
   transform: translateX(50px);
 }
@@ -133,7 +136,7 @@ tr:nth-child(even) {
 }
 
 .table_td_writer{
-width:100px;
+width:300px;
 padding-right: 10px;
 }
 

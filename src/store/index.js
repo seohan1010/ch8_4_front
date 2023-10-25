@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "@redux-saga/core";
 import { createSlice, configureStore, combineReducers } from "@reduxjs/toolkit";
 import { getBoard, insertBoard, updateBoard } from "../api/api";
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, all, call } from "redux-saga/effects";
 
 export const GET_BOARD_STATUS = "get_board_succeed";
 export const BOARD_FETCH_REQUESTED = "board_fetch_requested";
@@ -18,11 +18,12 @@ function* getBoardAction() {
   yield put({ type: GET_BOARD_STATUS, payload: boardData });
 }
 
-function* boardInsertAction(payload) {
-  console.log("boardInsert Saga called and payload is : ", payload);
-  yield insertBoard(payload); // 데이터를 insert하고
-  const boardData = yield getBoard(); // 갱신된 데이터를 가지고 온다.
-  yield put({ type: BOARD_FETCH_REQUESTED, payload: boardData }); // 여기서 dispatch를 시켜주는거 같다.
+function* boardInsertAction(action) {
+  console.log("boardInsert Saga called and payload is : ", action);
+  const insertBoardData = yield insertBoard(action); // 데이터를 insert하고
+  console.log("insertBoardData returned");
+  // console.log("insertBoardData : ", insertBoardData);
+  // yield put({ type: BOARD_FETCH_REQUESTED }); // 여기서 dispatch를 시켜주는거 같다.
   // dispatch 할 타입과 데이터 put 안에 객체 형태로 넣어주는거 같다.
 }
 
@@ -34,7 +35,7 @@ function* boardUpdateAction(payload) {
 function* boardSaga() {
   console.log("requested to rootsaga");
   yield takeEvery(BOARD_FETCH_REQUESTED, getBoardAction); // takeevery로 dispatch되는 action의 타입과 api통신을
-  yield takeEvery(BOARD_INSERT_REQUESTED, boardInsertAction); // 하는 saga를 매핑? 시켜준다.
+  yield takeEvery(BOARD_INSERT_REQUESTED, boardInsertAction); // 하는 메서드를 호출하는 saga를 매핑? 시켜준다.
   yield takeEvery(BOARD_UPDATE_REQUESTED, boardUpdateAction);
 }
 
@@ -65,9 +66,23 @@ export const boardReducer = (state = { boardList: [], value: "" }, action) => {
   }
 };
 
-
+export function* rootSaga() {
+  yield all([call(boardSaga)]);
+}
+const rootReducer = combineReducers({ boardReducer: boardReducer });
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(boardReducer, applyMiddleware(sagaMiddleware));
+
+//아래에서 미들웨어 설정하는 것이 의미하는 바는 잘 모른다.
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      immutableCheck: false,
+    }).concat(sagaMiddleware),
+});
+
+// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 export default store;
-sagaMiddleware.run(boardSaga); // 사가를 합친 사가를 실행
+sagaMiddleware.run(rootSaga); // 사가를 합친 사가를 실행

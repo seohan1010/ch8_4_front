@@ -12,10 +12,10 @@ export const getBoard = async () => {
     headers: { "Content-Type": "application/json" },
   };
 
-  const data = await fetch(url, obj);
+  const data = await fetch(url, obj).catch((err) => err);
 
   try {
-    throw new Error();
+    // throw new Error();
     let { list, ph } = await data.json(); // 백엔드에서 map 형태로 데이터가 들어오므로
     return { list: list, message: SUCCEED }; // 안에있는 데이터를 꺼내서 반환한다.
   } catch (err) {
@@ -24,23 +24,26 @@ export const getBoard = async () => {
 };
 
 export const insertBoard = async (data) => {
-  console.log("data from api  : ", data.payload);
   let sendData = data.payload;
   console.log(
     "insert board request has been arrived at api data is :",
     sendData
   );
   // 아래의 코드를 상수로 선언해도 되는지를 모르겠다.
-  let response = await fetch(BASE_URL + "/board/board", {
+  const response = await fetch(BASE_URL + "/board/board", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(sendData),
-  });
+  }).catch((err) => err);
+
   console.log("insert status is : ", response.status);
-  if (!response.ok) {
-    let res = await response.json();
-    console.log(res);
+  let res = await response.json();
+  console.log(res);
+  if (!response.status !== 200) {
+    console.log("reponse.status : ", response.status);
+    return response.status;
   }
+  return { status: response.status };
 };
 
 export const updateBoard = async (data) => {
