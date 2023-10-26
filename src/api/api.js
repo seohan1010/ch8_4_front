@@ -12,15 +12,22 @@ export const getBoard = async () => {
     headers: { "Content-Type": "application/json" },
   };
 
-  const data = await fetch(url, obj).catch((err) => err);
+  // fetch하면서 데이터를 변환 및 에러 핸들링을 같이 해준다.
+  const data = await fetch(url, obj)
+    .then((data) => data)
+    .catch((err) => err);
+  console.log("data.status:", data.status);
 
-  try {
-    // throw new Error();
-    let { list, ph } = await data.json(); // 백엔드에서 map 형태로 데이터가 들어오므로
-    return { list: list, message: SUCCEED }; // 안에있는 데이터를 꺼내서 반환한다.
-  } catch (err) {
+  let { list, ph } = await data;
+
+  //백단에서 에러가 발생하면은 빈배열을 보내주고.
+  if (!data.ok) {
     return { list: [], message: FAILED };
   }
+
+  // 백엔드에서 map 형태로 데이터가 들어오므로
+  // 안에있는 데이터를 꺼내서 반환한다.
+  return { list: list, message: SUCCEED };
 };
 
 export const insertBoard = async (data) => {
@@ -55,7 +62,7 @@ export const updateBoard = async (data) => {
     body: JSON.stringify(data.payload),
   };
 
-  let response = await fetch(url, obj);
+  let response = await fetch(url, obj).catch((err) => err);
   try {
     let reqData = response.status;
     console.log("update succeed : ", reqData);
