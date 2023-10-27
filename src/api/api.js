@@ -13,16 +13,16 @@ export const getBoard = async () => {
   };
 
   // fetch하면서 데이터를 변환 및 에러 핸들링을 같이 해준다.
-  const data = await fetch(url, obj)
-    .then((data) => data)
-    .catch((err) => err);
+  const data = await fetch(url, obj).catch((err) => err);
   console.log("data.status:", data.status);
 
-  let { list, ph } = await data;
+  let { list, ph } = await data.json();
 
-  //백단에서 에러가 발생하면은 빈배열을 보내주고.
+  // 상태코드가 잘 뜬다.
+  console.log("data.status", data.status, data.ok);
+
   if (!data.ok) {
-    return { list: [], message: FAILED };
+    return { list: list, message: FAILED };
   }
 
   // 백엔드에서 map 형태로 데이터가 들어오므로
@@ -43,13 +43,15 @@ export const insertBoard = async (data) => {
     body: JSON.stringify(sendData),
   }).catch((err) => err);
 
+  console.log("response is :", response);
   console.log("insert status is : ", response.status);
   let res = await response.json();
-  console.log(res);
+  console.log("res is :", res);
   if (!response.status !== 200) {
     console.log("reponse.status : ", response.status);
-    return response.status;
+    return { status: response.status };
   }
+  console.log("it is okay?");
   return { status: response.status };
 };
 

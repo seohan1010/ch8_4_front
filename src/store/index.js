@@ -8,7 +8,7 @@ export const GET_BOARD_STATUS = "get_board_succeed";
 export const BOARD_FETCH_REQUESTED = "board_fetch_requested";
 export const BOARD_INSERT_REQUESTED = "board_insert_requested";
 export const BOARD_UPDATE_REQUESTED = "board_update_requested";
-
+export const BOARD_INSERT_STATUS = "board_insert_status";
 const SUCCEED = "succeed";
 const FAILED = "failed";
 
@@ -20,11 +20,10 @@ function* getBoardAction() {
 
 function* boardInsertAction(action) {
   console.log("boardInsert Saga called and payload is : ", action);
-  const insertBoardData = yield insertBoard(action); // 데이터를 insert하고
+  const insertBoardStatus = yield insertBoard(action); // 데이터를 insert하고
   console.log("insertBoardData returned");
-  // console.log("insertBoardData : ", insertBoardData);
-  // yield put({ type: BOARD_FETCH_REQUESTED }); // 여기서 dispatch를 시켜주는거 같다.
-  // dispatch 할 타입과 데이터 put 안에 객체 형태로 넣어주는거 같다.
+  console.log("insertBoardData : ", insertBoardStatus);
+  yield put({ type: BOARD_INSERT_STATUS, payload: insertBoardStatus });
 }
 
 function* boardUpdateAction(payload) {
@@ -39,7 +38,8 @@ function* boardSaga() {
   yield takeEvery(BOARD_UPDATE_REQUESTED, boardUpdateAction);
 }
 
-export const boardReducer = (state = { boardList: [], value: "" }, action) => {
+const initialState = { boardList: [], value: "", fetchStatus: false };
+export const boardReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_BOARD_STATUS:
       if (action.payload.message === SUCCEED) {
@@ -58,7 +58,12 @@ export const boardReducer = (state = { boardList: [], value: "" }, action) => {
         state,
         action
       );
-      return { status: 200 };
+      return { fetchStatus: !state.fetchStatus };
+      break;
+    case BOARD_INSERT_STATUS:
+      console.log("board Insert status", action.payload);
+      return { fetchStatus: !state.fetchStatus };
+
     // case BOARD_UPDATE_REQUESTED:
     //   console.log(BOARD_UPDATE_REQUESTED + " : ", action);
     default:

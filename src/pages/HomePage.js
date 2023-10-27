@@ -9,16 +9,22 @@ import {
   BOARD_UPDATE_REQUESTED,
 } from "../store/index";
 
+export const boardListSelector = (state) => {
+  return state.boardReducer.boardList === undefined
+    ? []
+    : state.boardReducer.boardList;
+}; // selector 에서 undefined를 반환하면은 빈배열을 반환해서 컴포넌트에서 undefined에러가 발생하는 것을 방지
 const HomePage = () => {
   const [modalIsShown, setModalIsShown] = useState(false);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const boardList = useSelector((state) => state.boardReducer.boardList); // combineReducer를 했기 때문에 타고 올라가서 값을 가져와야 한다.
+  const boardList = useSelector(boardListSelector); // combineReducer를 했기 때문에 타고 올라가서 값을 가져와야 한다.
   const value = useSelector((state) => state.boardReducer.value);
+  const fetchStatus = useSelector((state) => state.boardReducer.fetchStatus);
   useEffect(() => {
     dispatch({ type: BOARD_FETCH_REQUESTED });
-  }, []);
+  }, [fetchStatus, dispatch]);
 
   const showModalHandler = () => {
     setModalIsShown(true);
@@ -74,7 +80,7 @@ const HomePage = () => {
       >
         {"value is:" + value ? value : "no data"}
         <ul>
-          {boardList !== undefined || boardList.length !== 0 ? (
+          {boardList.length !== 0 ? (
             boardList.map((data) => <li key={data.bno}>{data.title}</li>)
           ) : (
             <p
