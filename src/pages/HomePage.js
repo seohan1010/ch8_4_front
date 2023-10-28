@@ -56,9 +56,9 @@ const HomePage = () => {
 
   const sendBoardDataHandler = () => {
     const data = {
-      title: "saga test data2",
-      writer: "saga test writer2",
-      content: "saga test content2",
+      title: "saga test data4",
+      writer: "saga test writer4",
+      content: "saga test content4",
     };
     dispatch({ type: BOARD_INSERT_REQUESTED, payload: data });
   };

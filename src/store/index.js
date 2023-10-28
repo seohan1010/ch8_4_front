@@ -23,7 +23,8 @@ function* boardInsertAction(action) {
   const insertBoardStatus = yield insertBoard(action); // 데이터를 insert하고
   console.log("insertBoardData returned");
   console.log("insertBoardData : ", insertBoardStatus);
-  yield put({ type: BOARD_INSERT_STATUS, payload: insertBoardStatus });
+  yield put({ type: BOARD_FETCH_REQUESTED });
+  console.log("boardInsert response arrived at boardInsert Saga");
 }
 
 function* boardUpdateAction(payload) {
@@ -62,8 +63,8 @@ export const boardReducer = (state = initialState, action) => {
       break;
     case BOARD_INSERT_STATUS:
       console.log("board Insert status", action.payload);
+        
       return { fetchStatus: !state.fetchStatus };
-
     // case BOARD_UPDATE_REQUESTED:
     //   console.log(BOARD_UPDATE_REQUESTED + " : ", action);
     default:
