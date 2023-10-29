@@ -12,7 +12,7 @@ const ErrorPage = () => {
   // if(error.status === 500){
   //     message = JSON.parse(error.data).message;
   // }
-
+  
   // if(error.status === 400){
   //     title = 'Not Found!';
   //     message = 'Could not find resource or page.';
@@ -22,7 +22,7 @@ const ErrorPage = () => {
     <>
       <Navigation />
       <PageContent title={"An error occured"}>
-        {/* <p>{error.status}</p> */}
+        <p>{error.status}</p>
       </PageContent>
     </>
   );

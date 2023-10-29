@@ -12,7 +12,6 @@ import { loader as boardLoader } from "./pages/BoardPage";
 import { loader as boardDetailLoader } from "./pages/BoardDetailPage";
 import { loader as tokenLoader } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
-import Test from "./pages/Test";
 
 import {
   createBrowserRouter,
@@ -43,6 +42,7 @@ const router = createBrowserRouter([
     },
     children: [
       { index: true, path: "/", element: <HomePage /> },
+
       {
         path: "/register",
         element: <RegisterPage />,
@@ -59,10 +59,7 @@ const router = createBrowserRouter([
           return redirect("/");
         },
       },
-      {
-        path: "/tests",
-        element: <Test />,
-      },
+
       {
         path: "/board",
         element: <BoardPage />,

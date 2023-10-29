@@ -18,8 +18,10 @@ export const getBoard = async () => {
 
   let { list, ph } = await data.json();
 
-  // 상태코드가 잘 뜬다.
+  // 상태코드가 잘 뜬다. ---> json()을 사용하지 않은 response에는 Response객체가 있는데,
+  //                         안에있는 상태 코드는 바로 사용이 가능하다.
   console.log("data.status", data.status, data.ok);
+  console.log("data.url is :", data.url);
 
   if (!data.ok) {
     return { list: list, message: FAILED };
@@ -68,12 +70,7 @@ export const updateBoard = async (data) => {
   };
 
   let response = await fetch(url, obj).catch((err) => err);
-  try {
-    let reqData = response.status;
-    console.log("update succeed : ", reqData);
-    return reqData;
-  } catch (err) {
-    console.log("update failed : ", response.status);
-    return response.status;
-  }
+
+  console.log("updateBoard status is : ", response.status);
+  return response.statua;
 };

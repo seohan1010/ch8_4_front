@@ -32,6 +32,7 @@ function* boardUpdateAction(payload) {
   yield updateBoard(payload); // request로 보낼 데이터를 선언해 주는 것을 잊지 말자
 }
 
+//takeEvery 말고 takeLatest도 있다.
 function* boardSaga() {
   console.log("requested to rootsaga");
   yield takeEvery(BOARD_FETCH_REQUESTED, getBoardAction); // takeevery로 dispatch되는 action의 타입과 api통신을
@@ -60,10 +61,9 @@ export const boardReducer = (state = initialState, action) => {
         action
       );
       return { fetchStatus: !state.fetchStatus };
-      break;
     case BOARD_INSERT_STATUS:
       console.log("board Insert status", action.payload);
-        
+
       return { fetchStatus: !state.fetchStatus };
     // case BOARD_UPDATE_REQUESTED:
     //   console.log(BOARD_UPDATE_REQUESTED + " : ", action);

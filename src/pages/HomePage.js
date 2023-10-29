@@ -131,7 +131,8 @@ const HomePage = () => {
         test updateBoard button
       </button>
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
-
+      <br />
+      <button onClick={() => navigate("/test")}>go to test page</button>
       <WriteBoardComment />
     </Fragment>
   );
