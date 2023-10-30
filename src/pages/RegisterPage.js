@@ -25,7 +25,6 @@ const RegisterPage = () => {
     const url = "http://localhost/board/uploadFile";
     const obj = {
       method: "POST",
-      headers: { "Content-Type": "false" },
       body: formData,
     };
     const response = await fetch(url, obj);
