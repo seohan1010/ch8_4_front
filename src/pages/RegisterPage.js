@@ -8,7 +8,7 @@ const RegisterPage = () => {
     e.persist();
     console.log(e.target.files);
     const selectedFiles = e.target.files;
-    const fileList = [...selectedFiles];
+    const fileList = selectedFiles[0];
     console.log("fileList is :", fileList);
     setSelectedFile(fileList);
   };
@@ -25,6 +25,8 @@ const RegisterPage = () => {
     const url = "http://localhost/board/uploadFile";
     const obj = {
       method: "POST",
+      headers: { enctype: "multipart/form-data" },
+
       body: formData,
     };
     const response = await fetch(url, obj);
@@ -71,7 +73,7 @@ const RegisterPage = () => {
           id="file"
           name="file"
           onChange={(e) => onChangeHandler(e)}
-          multiple
+          multiple={true}
         ></input>
         <button
           style={{
