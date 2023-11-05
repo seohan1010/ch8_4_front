@@ -1,21 +1,13 @@
-import WriteBoard from '../components/board/WriteBoard';
-
+import WriteBoard from "../components/board/WriteBoard";
 
 const NewBoardPage = () => {
-    
-
-return (
-
-<>
-<WriteBoard />
-</>
-);
-
-}
-
+  return (
+    <>
+      <WriteBoard />
+    </>
+  );
+};
 
 export default NewBoardPage;
 
-export async function action (){
-        
-}
+export async function action() {}
