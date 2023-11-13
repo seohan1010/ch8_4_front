@@ -13,14 +13,14 @@ const SUCCEED = "succeed";
 const FAILED = "failed";
 
 function* getBoardAction() {
-  const boardData = yield getBoard(); // 여기서 데이터를 받아와야함.
+  const boardData = yield call(getBoard); // 여기서 데이터를 받아와야함.
   console.log("boardData : ", boardData);
   yield put({ type: GET_BOARD_STATUS, payload: boardData });
 }
 
 function* boardInsertAction(action) {
   console.log("boardInsert Saga called and payload is : ", action);
-  const insertBoardStatus = yield insertBoard(action); // 데이터를 insert하고
+  const insertBoardStatus = yield call(insertBoard, action); // 데이터를 insert하고
   console.log("insertBoardData returned");
   console.log("insertBoardData : ", insertBoardStatus);
   yield put({ type: BOARD_FETCH_REQUESTED });
@@ -29,7 +29,7 @@ function* boardInsertAction(action) {
 
 function* boardUpdateAction(payload) {
   console.log("boardUpdateAction Saga called and payload is : " + payload);
-  yield updateBoard(payload); // request로 보낼 데이터를 선언해 주는 것을 잊지 말자
+  yield call(updateBoard, payload); // request로 보낼 데이터를 선언해 주는 것을 잊지 말자
 }
 
 //takeEvery 말고 takeLatest도 있다.

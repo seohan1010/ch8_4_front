@@ -1,9 +1,8 @@
 import classes from "./Navigation.module.css";
 import List from "../part/list/List";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useRouteLoaderData, useLoaderData } from "react-router-dom";
-import { getAuthToken } from "../../util/auth";
+
+import { useLoaderData } from "react-router-dom";
 
 const Navigation = () => {
   // const token = getAuthToken(); //뭐지 .....
