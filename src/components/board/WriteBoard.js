@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const WriteBoard = () => {
   const navigate = useNavigate();
+  const email=localStorage.getItem("email");
 
   const titleRef = useRef("");
   const writerRef = useRef("");
@@ -76,6 +77,8 @@ const WriteBoard = () => {
           name="writer"
           className={classes.write_board_writer}
           ref={writerRef}
+          value={email}
+          readOnly={true}
         />
         <br />
         <div style={{ transform: "translateX(13px)" }}>content</div>

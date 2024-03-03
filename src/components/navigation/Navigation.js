@@ -1,13 +1,31 @@
 import classes from "./Navigation.module.css";
-import List from "../part/list/List";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 
-import { useLoaderData } from "react-router-dom";
+
 
 const Navigation = () => {
-  // const token = getAuthToken(); //뭐지 .....
-  // useRouteLoaderData()로는 해당 route에서 반환하는 값을 받아올수 없다. // 그게 아니라 navigation은 root랑 묶여 있어서 그런거 같다.
-  const token = useLoaderData("root");
+
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("email");
+
+
+
+const onClickHandler = () =>{
+  localStorage.removeItem("email");
+  navigate('/');
+}
+
+
+const loginCheck = ()=>{
+  if(!token){
+    alert('please login first...')
+    navigate('/login?prev=board');
+  }else {
+    navigate('/board');
+    
+  }
+}
 
   return (
     <>
@@ -17,34 +35,29 @@ const Navigation = () => {
             ch8_4
           </Link>
         </div>
-        {"token:" + token}
         <ul className={classes.button_wrap}>
-          <List className={classes.li_first} href={"/"} content={"home"} />
-          <List
+          <li className={classes.li_first}  ><NavLink end to={"/"} className={({isActive})=>isActive? classes.active : undefined}>{"home"}</NavLink></li>
+          <li
             className={classes.li_second}
-            href={"/board"}
-            content={"board"}
-          />
+            onClick={()=>loginCheck()}
+     
+          ><NavLink end to={''} className={({isActive})=>isActive? classes.active : undefined}> {"board"}</NavLink> </li>
           {!token && (
-            <List
+            <li
               className={classes.li_third}
-              href={"/login"}
-              content={"login"}
-            />
+            ><NavLink end to={"/login"} className={({isActive})=>isActive? classes.active : undefined}>{"login"}</NavLink></li>
           )}{" "}
           {!token && (
-            <List
+            <li
               className={classes.li_third}
               href={"/register"}
-              content={"register"}
-            />
+            ><NavLink end to={"/register"} className={({isActive})=>isActive? classes.active : undefined}>{"register"}</NavLink></li>
           )}
           {token && (
-            <List
+            <li
               className={classes.li_third}
-              href={"/logout"}
-              content={"logout"}
-            />
+              onClick={()=>onClickHandler()}
+            >{"logout"}</li>
           )}
         </ul>
       </div>

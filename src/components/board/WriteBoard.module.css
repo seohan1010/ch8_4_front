@@ -15,7 +15,6 @@
 .write_board_writer {
   margin:auto;
   transform: translateX(3px);
-
   margin-top: 20px;
   width: 300px;
 }
@@ -25,9 +24,9 @@
   border-radius: 5px;
   border: 3px solid green;
   margin:auto;
-  min-width: 500px;
-  max-width: 500px;
-  min-height: 500px;
+  min-width: 600px;
+  max-width: 600px;
+  min-height: 200px;
   max-height: 500px;
 }
 
@@ -38,7 +37,7 @@
   background-color: darkcyan;
   border-radius: 3px;
   box-shadow: none;
-    border:none; 
+  border:none; 
   margin-top: 15px;
   margin-bottom:15px;
 }

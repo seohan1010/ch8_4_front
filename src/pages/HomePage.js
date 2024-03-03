@@ -65,8 +65,8 @@ const HomePage = () => {
 
   return (
     <Fragment>
-      <div>This is Homepage</div>
-      <button onClick={showModalHandler}>모달을 보여주세요</button>
+      <h1 >Welcome!!!</h1>
+      {/* <button onClick={showModalHandler}>모달을 보여주세요</button>
       <p>
         <button onClick={navigateHandler}>check-out new board</button>
       </p>
@@ -133,7 +133,7 @@ const HomePage = () => {
       {modalIsShown && <ModalContent onClose={hideModalHandler} />}
       <br />
       <button onClick={() => navigate("/test")}>go to test page</button>
-      <WriteBoardComment />
+  */}
     </Fragment>
   );
 };

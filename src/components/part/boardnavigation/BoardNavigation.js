@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import classes from "./BoardNavigation.module.css";
 
 export const BEFORE = "before";
@@ -29,8 +29,8 @@ const BoardNavigation = ({ resData, ph, searchInputValue }) => {
       showNext,
     } = ph;
 
-    // setStartPage(beginPage);
-    // setLastPage(endPage);
+    setStartPage(beginPage);
+    setLastPage(endPage);
     setShowBefore(showPrev);
     setShowAfter(showNext);
     setCurNavi(page);
@@ -209,7 +209,12 @@ const BoardNavigation = ({ resData, ph, searchInputValue }) => {
     console.log(identifier);
 
     if (identifier === BEFORE) {
-      getBoardByArrow(startPage - 1);
+      if(startPage !==1){
+        console.log('startPage is : ',startPage);
+        getBoardByArrow(startPage - 10);
+      }else{
+        getBoardByArrow(1);
+      }
       setCurNavi(startPage - 1);
     } else if (identifier === AFTER) {
       getBoardByArrow(lastPage + 1);

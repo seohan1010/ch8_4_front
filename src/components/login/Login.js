@@ -1,6 +1,6 @@
 import classes from "./Login.module.css";
-import { useRef, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useRef, useState,useEffect  } from "react";
+import { redirect, useNavigate,useSearchParams } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,6 +9,11 @@ const Login = () => {
   const passwordRef = useRef();
   const [message, setMessage] = useState("");
   const [validated, setIsValidated] = useState("");
+  const [searhParams, setSearchParams] = useSearchParams();
+  const prev = searhParams.get("prev");
+
+
+
 
   const isValid = (userInfo) => {
     if (userInfo.email.trim().length === 0 || userInfo.email === undefined) {
@@ -38,6 +43,12 @@ const Login = () => {
     if (response.ok) {
       localStorage.setItem("email", userInfo.email);
       console.log("email at localStoarage : ", localStorage.getItem("email"));
+
+      console.log(searhParams.get("prev"));
+      if(prev === 'board'){
+        navigate('/board');
+        return;
+      }
       navigate("/");
     } else {
       setMessage("please check password and Id.");
@@ -45,7 +56,7 @@ const Login = () => {
       return;
     }
   };
-  // this is for test
+
 
   // this is for commit rollback test
   const onClickHandler = () => {

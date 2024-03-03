@@ -26,6 +26,19 @@
   transform: translateX(1000px);
 }
 
+
+a {
+  text-decoration: none;
+  color:black;
+}
+
+.active
+{
+color:yellow;
+}
+
+
+
 .li_first {
   margin: auto;
   border: 1px solid black;

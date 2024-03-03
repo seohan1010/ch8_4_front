@@ -6,9 +6,13 @@ import classes from './List.module.css';
 // 활성화된 Link일 경우에 isActive는 true를 반환하는거 같다. 
 const List = (props) => {
 
+const onClickHandler = ()=>{
+    localStorage.removeItem("email");
+}
+
 return(
 <>
-<li className={props.className}><NavLink end  to={props.href} className={({isActive})=>isActive? classes.active : undefined }  >{props.content}</NavLink></li>
+<li className={props.className} onClick={()=>onClickHandler()}><NavLink end  to={props.href} className={({isActive})=>isActive? classes.active : undefined }  >{props.content}</NavLink></li>
 </>
 );
 
