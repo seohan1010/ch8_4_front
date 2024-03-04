@@ -1,5 +1,5 @@
 import classes from "./BoardComment.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const modifyCommentRequest = async (cno, modifiedComment) => {
   console.log(cno, modifiedComment);
@@ -140,6 +140,9 @@ const BoardComment = ({ data, onChange }) => {
     }
   };
 
+
+  const isUser = data.commenter === localStorage.getItem('email');
+
   return (
     <div className={classes.comment_card}>
       {isValid
@@ -172,6 +175,7 @@ const BoardComment = ({ data, onChange }) => {
                 onClick={(e) =>
                   onClickHander(data.cno, e.target.innerHTML, data)
                 }
+                disabled={!isUser}
               >
                 {/* commentCno와 해당 댓글의 cno가 같으면 save  ---> 한번에 하나의 댓글만 수정이 가능함*/}
                 {data.cno === commentNo ? "save" : "edit"}
@@ -179,6 +183,7 @@ const BoardComment = ({ data, onChange }) => {
               <button
                 className={classes.delete_button}
                 onClick={() => onDeleteHandler(data.cno)}
+                disabled={!isUser}
               >
                 {"delete"}
               </button>

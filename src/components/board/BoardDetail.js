@@ -102,8 +102,12 @@ const BoardDetail = ({ detail }) => {
       : setCommentChanged(false);
   };
 
+ let isUser = writer === localStorage.getItem('email');
+
   return (
     <>
+    {isUser.toString()}
+
       <div className={classes.board_detail_wrap}>
         <label htmlFor="title">title</label>
         <input
@@ -149,6 +153,7 @@ const BoardDetail = ({ detail }) => {
           onClick={() => {
             onClickHandler("delete");
           }}
+          disabled={!isUser}
         >
           delete
         </button>
@@ -157,6 +162,7 @@ const BoardDetail = ({ detail }) => {
           onClick={(e) => {
             onClickHandler(e.target.innerHTML);
           }}
+          disabled={!isUser}
         >
           {isValid ? "edit" : "save"}
         </button>
