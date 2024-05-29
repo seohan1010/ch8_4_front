@@ -35,7 +35,7 @@ const WriteBoard = () => {
     };
 
     const saveBoard = async () => {
-      const url = "http://localhost/board/board";
+      const url = "http://localhost:8888/board/board";
       const obj = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

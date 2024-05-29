@@ -31,7 +31,7 @@ const Login = () => {
 
   const login = async (userInfo) => {
     setIsValidated(false);
-    const url = "http://localhost/login/login";
+    const url = "http://localhost:8888/login/login";
     const obj = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

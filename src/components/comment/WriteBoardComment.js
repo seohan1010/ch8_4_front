@@ -1,12 +1,12 @@
 import classes from "./WriteBoardComment.module.css";
 import { useRef, useState } from "react";
 
-const WriteBoardComment = ({ data, onChange }) => {
+const WriteBoardComment = ({ data, onChange, writer }) => {
   console.log("bno from write comment component : ", data);
   const [comment, setComment] = useState();
 
   const sendCommentData = async (obj) => {
-    const url = "http://localhost/boardcomment/comment";
+    const url = "http://localhost:8888/boardcomment/comment";
     const data = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,7 +34,7 @@ const WriteBoardComment = ({ data, onChange }) => {
     const obj = {
       pcno: data,
       comment: comment,
-      commenter: "test commenter",
+      commenter: writer,
     };
     sendCommentData(obj);
   };
