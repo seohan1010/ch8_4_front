@@ -37,7 +37,7 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo),
     };
-
+try{
     const response = await fetch(url, obj);
 
     if (response.ok) {
@@ -55,6 +55,9 @@ const Login = () => {
       setIsValidated(true);
       return;
     }
+  }catch(err){
+    alert("error occured : "+err);
+  }
   };
 
 
