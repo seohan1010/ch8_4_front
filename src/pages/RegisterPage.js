@@ -22,7 +22,7 @@ const RegisterPage = () => {
     // }
 
     // 데이터가 입력된 객체의 정보를 request에 사용할 body에 작성
-    const url = "http://localhost:8888/board/uploadFile";
+    const url = "http://172.31.37.225:8888/board/uploadFile";
     const obj = {
       method: "POST",
       headers: { enctype: "multipart/form-data" },

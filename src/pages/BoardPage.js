@@ -14,7 +14,7 @@ const BoardPage = () => {
 export default BoardPage;
 
 export async function loader() {
-  const url = "http://localhost:8888/board/board";
+  const url = "http://172.31.37.225:8888/board/board";
   const obj = {
     method: "GET",
     headers: { "Content-Type": "application/json" },

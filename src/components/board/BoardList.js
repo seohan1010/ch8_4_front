@@ -27,7 +27,7 @@ const BoardList = (props) => {
   }, [props]);
 
   const searchBoard = useCallback(async (board) => {
-    const url = "http://localhost:8888/board/search";
+    const url = "http://172.31.37.225:8888/board/search";
     const obj = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
