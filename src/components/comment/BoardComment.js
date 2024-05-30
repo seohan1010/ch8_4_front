@@ -9,7 +9,7 @@ const modifyCommentRequest = async (cno, modifiedComment) => {
     comment: modifiedComment,
   };
 
-  const url = "http://172.31.37.225:8888/boardcomment/comment";
+  const url = "http://13.208.64.8:8888/boardcomment/comment";
   const obj = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ const deleteComment = async (cno) => {
     cno: cno,
   };
 
-  const url = "http://172.31.37.225:8888/boardcomment/comment";
+  const url = "http://13.208.64.8:8888/boardcomment/comment";
   const obj = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const BoardComment = ({ data, onChange }) => {
     console.log("from boardComment", data);
 
     const getComment = async () => {
-      const url = "http://172.31.37.225:8888/boardcomment/commentList?pcno=" + data;
+      const url = "http://13.208.64.8:8888/boardcomment/commentList?pcno=" + data;
       const obj = {
         method: "GET",
         headers: { "Content-Type": "application/json" },

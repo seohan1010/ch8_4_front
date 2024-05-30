@@ -31,7 +31,7 @@ const Login = () => {
 
   const login = async (userInfo) => {
     setIsValidated(false);
-    const url = "http://172.31.37.225:8888/login/login";
+    const url = "http://13.208.64.8:8888/login/login";
     const obj = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
