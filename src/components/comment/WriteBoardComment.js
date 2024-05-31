@@ -6,7 +6,7 @@ const WriteBoardComment = ({ data, onChange, writer }) => {
   const [comment, setComment] = useState();
 
   const sendCommentData = async (obj) => {
-    const url = "http://13.208.64.8:8888/boardcomment/comment";
+    const url = "http://172.31.37.66:8888/boardcomment/comment";
     const data = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
