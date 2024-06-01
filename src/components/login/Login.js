@@ -33,6 +33,7 @@ const Login = () => {
     setIsValidated(false);
     const url = "http://172.31.37.66:8888/login/login";
     const obj = {
+      mode: 'cors',
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo),
