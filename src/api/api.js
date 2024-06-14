@@ -1,4 +1,4 @@
-const BASE_URL = "http://172.31.37.66:8888";
+
 
 const SUCCEED = "succeed";
 const FAILED = "failed";
@@ -6,7 +6,7 @@ const FAILED = "failed";
 export const getBoard = async () => {
   // await 안 붙여주면은 Promise객체를 반환 한다. ---> 버전에 따라 차이점이 있는거 같다. (확실한거는 아니다.)
 
-  const url = BASE_URL + "/board/board";
+  const url ="/board/board";
   const obj = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ export const insertBoard = async (data) => {
     sendData
   );
   // 아래의 코드를 상수로 선언해도 되는지를 모르겠다.
-  const response = await fetch(BASE_URL + "/board/board", {
+  const response = await fetch("/board/board", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(sendData),
@@ -62,7 +62,7 @@ export const insertBoard = async (data) => {
 
 export const updateBoard = async (data) => {
   console.log("data from updateBoard api : ", data.payload);
-  const url = BASE_URL + "/board/board";
+  const url = "/board/board";
   const obj = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

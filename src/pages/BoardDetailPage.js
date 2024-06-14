@@ -25,7 +25,7 @@ export default BoardDetailPage;
 export async function loader({ request, params }) {
   const bno = params.bno;
 
-  const url = "http://172.31.37.66:8888/board/detail/" + bno;
+  const url = "/board/detail/" + bno;
   const data = {
     method: "GET",
     headers: { "Content-Type": "application/json" },

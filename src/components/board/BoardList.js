@@ -11,7 +11,7 @@ const BoardList = (props) => {
   const [board, setBoard] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [page, setPage] = useState("");
-  const [searchInputValue, setSearchInputValue] = useState('');
+  const [searchInputValue, setSearchInputValue] = useState();
 
   const { list, ph } = props.board; // loader 함수에서 넘어온 값들이다.
 
@@ -27,7 +27,7 @@ const BoardList = (props) => {
   }, [props]);
 
   const searchBoard = useCallback(async (board) => {
-    const url = "http://172.31.37.66:8888/board/search";
+    const url = "/board/search";
     const obj = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

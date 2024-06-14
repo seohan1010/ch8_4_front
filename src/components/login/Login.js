@@ -31,11 +31,11 @@ const Login = () => {
 
   const login = async (userInfo) => {
     setIsValidated(false);
-    const url = "http://172.31.37.66:8888/login/login";
-    const obj = {
+    const url = "/login/login";
+    const obj = {                                                           
       method: "POST",
-      headers: { "Content-Type": "application/json",
-                 'Access-Control-Allow-Origin':'*'
+      mode: 'cors',
+      headers: { "Content-Type": "application/json"
        },
       body: JSON.stringify(userInfo),
     };
