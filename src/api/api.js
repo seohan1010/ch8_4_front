@@ -62,11 +62,9 @@ export const insertBoard = async (data) => {
 
 export const updateBoard = async (data) => {
   console.log("data from updateBoard api : ", data.payload);
-<<<<<<< HEAD
-  const url = "/board/board";
-=======
+
   const url =  "/board/board";
->>>>>>> 171b48f (code changed)
+
   const obj = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
