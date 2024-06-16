@@ -1,19 +1,13 @@
-<<<<<<< HEAD
+ HEAD
 
-=======
->>>>>>> 171b48f (code changed)
 
-const SUCCEED = "succeed";
-const FAILED = "failed";
+
 
 export const getBoard = async () => {
   // await 안 붙여주면은 Promise객체를 반환 한다. ---> 버전에 따라 차이점이 있는거 같다. (확실한거는 아니다.)
 
-<<<<<<< HEAD
-  const url ="/board/board";
-=======
+
   const url = "/board/board";
->>>>>>> 171b48f (code changed)
   const obj = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
