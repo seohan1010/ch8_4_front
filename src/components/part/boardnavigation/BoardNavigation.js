@@ -58,7 +58,7 @@ const BoardNavigation = ({ resData, ph, searchInputValue }) => {
       page: curnav,
     };
 
-    const url = "http://172.31.37.66:8888/board/search";
+    const url = "/board/search";
     const obj = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -114,7 +114,7 @@ const BoardNavigation = ({ resData, ph, searchInputValue }) => {
       }
     }
 
-    const url = "http://172.31.37.66:8888/board/board?page=" + curnav;
+    const url = "/board/board?page=" + curnav;
     const obj = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -162,7 +162,7 @@ const BoardNavigation = ({ resData, ph, searchInputValue }) => {
   };
 
   const getBoardByArrow = async (pageValue) => {
-    const url = "http://172.31.37.66:8888/board/board?page=" + pageValue;
+    const url = "/board/board?page=" + pageValue;
     const obj = {
       method: "GET",
       headers: { "Content-Type": "application/json" },

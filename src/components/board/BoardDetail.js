@@ -30,7 +30,7 @@ const BoardDetail = ({ detail }) => {
     const bool = window.confirm("삭제 하시겠습니까?");
     if (!bool) return;
     console.log("bno for trasfer : ", detail.bno);
-    const url = "http://172.31.37.66:8888/board/board/" + detail.bno;
+    const url = "/board/board/" + detail.bno;
     const obj = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -67,7 +67,7 @@ const BoardDetail = ({ detail }) => {
       bno: detail.bno,
     };
 
-    const url = "http://172.31.37.66:8888/board/board";
+    const url = "/board/board";
     const obj = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

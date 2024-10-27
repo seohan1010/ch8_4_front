@@ -1,4 +1,4 @@
-const BASE_URL = "http://172.31.37.66:8888";
+const BASE_URL = "";
 
 const SUCCEED = "succeed";
 const FAILED = "failed";
