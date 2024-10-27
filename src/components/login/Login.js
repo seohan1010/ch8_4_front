@@ -32,7 +32,9 @@ const Login = () => {
   const login = async (userInfo) => {
     setIsValidated(false);
     const url = "/login/login";
-    const obj = {                                                           
+
+    const obj = {
+
       method: "POST",
       mode: 'cors',
       headers: { "Content-Type": "application/json"
